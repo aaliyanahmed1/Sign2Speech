@@ -207,25 +207,6 @@ model = "llama3"  # Ollama model name
 4. Add tests if applicable
 5. Submit a pull request
 
-## 📝 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- YOLO team for the detection framework
-- DeepSORT authors for tracking implementation
-- Ollama team for LLM integration
-- PyQt5 developers for the GUI framework
-
-## 📞 Support
-
-For issues and questions:
-1. Check the logs in `logs/system.log`
-2. Verify Ollama server is running
-3. Ensure model file `models/sign.pt` exists
-4. Check GPU/CUDA compatibility
-
----
 
 **Note**: This system requires a trained YOLO model (`sign.pt`) and a running Ollama server for full functionality.
