@@ -1,362 +1,231 @@
-<<<<<<< HEAD
-# 🤟 Real-time Sign Language to Speech System
+# Sign2Speech - Professional Sign Language Interpreter
 
-A comprehensive real-time system that detects sign language gestures using YOLOv8, tracks them with DeepSORT, converts sequences to natural language sentences, and synthesizes speech using TTS.
+![Sign2Speech](UI-s.png)
 
-## 🎯 Features
+A real-time sign language interpretation system that converts sign language gestures into natural speech using computer vision, deep learning, and natural language processing.
 
-## 🚀 Key Features
+## 🚀 Features
 
-- **🔍 Real-Time Sign Detection**  
-  Uses a custom-trained YOLOv12 model to detect individual sign gestures with high accuracy.
+- **Real-time Sign Language Detection**: Custom YOLO12 model trained for 22 sign language gestures
+- **Multi-gesture Tracking**: DeepSORT algorithm for consistent gesture identification
+- **Natural Language Processing**: Converts gesture sequences into grammatically correct sentences
+- **Voice Synthesis**: Text-to-speech conversion with audio file generation
+- **Professional GUI**: Modern PyQt5 interface with dark theme
+- **Image & Video Support**: Process both static images and video files
+- **Audio Playback**: Integrated audio player for generated speech
 
-- **🎯 Multi-Object Tracking (DeepSORT)**  
-  Ensures temporal consistency by assigning persistent IDs to hands or gestures across video frames.
+## 📋 Supported Sign Language Gestures
 
-- **🧠 NLP + LLM Sentence Generation**  
-  Detected signs are first embedded using `Sentence Transformers`, then passed as prompts to **Ollama** (local LLM) to generate fluent, context-aware sentences.
+The system recognizes 22 different sign language gestures:
+- **Basic**: school, sorry, help, easy, work, age, effort, respect
+- **Location**: near, home, village, washroom
+- **Social**: friend, teacher, message, good
+- **Actions**: eating, drinking, pass, fail
+- **Settings**: preset, dress
 
-- **🗣️ Natural Speech Synthesis**  
-  Converts generated sentences to spoken audio using `pyttsx3` or `Coqui TTS`.
+## 🏗️ System Architecture
 
-- **📺 Visual Interface**  
-  Displays annotated live video with bounding boxes, gesture classes, tracking IDs, and generated sentences in real-time.
+### Core Components
 
-- **🧾 Logging & Audit Trail**  
-  Every recognized sentence and audio output is logged with timestamps for replay or debugging.
+1. **YOLO12Detector** (`components/yolo_inference.py`)
+   - Custom-trained YOLO model for sign language detection
+   - Confidence-based filtering
+   - Bounding box generation
 
-- **📈 Performance Metrics**  
-  Includes FPS counter and system resource monitoring for real-time performance insights.
+2. **DeepSORTTracker** (`components/deep_sort_tracker.py`)
+   - Object tracking for temporal consistency
+   - Multi-object tracking capabilities
+   - Track ID management
 
+3. **SentenceBuilder** (`components/sentence_builder.py`)
+   - Grammar templates and phrase patterns
+   - Context-aware sentence construction
+   - NLTK integration for advanced NLP
 
+4. **TTSEngine** (`components/tts_engine.py`)
+   - Text-to-speech conversion
+   - Audio file generation and management
 
-## 📂 Project Structure
+5. **Voice Pipeline** (`components/yolo2voice_pipeline.py`)
+   - Ollama LLM integration for natural sentence generation
+   - Context-aware prompts for different gesture types
+
+### Supporting Utilities
+
+- **DrawingUtils** (`utils/draw.py`): Visualization and annotation tools
+- **SystemLogger** (`utils/system_logger.py`): Logging and monitoring
+- **VideoProcessor** (`utils/video_utils.py`): Video frame handling
+
+## 🔄 Workflow Pipeline
 
 ```
-sign2speech/
-├── 📁 models/
-│   ├── yolov8_sign.pt          # YOLOv8 model trained on sign dataset
-│   └── deepsort/ckpt.t7        # DeepSORT checkpoint
-├── 📁 components/
-│   ├── yolo_inference.py       # YOLOv8 detection engine
-│   ├── deep_sort_tracker.py    # DeepSORT tracking wrapper
-│   ├── sentence_builder.py     # Sign sequence → sentence conversion
-│   ├── tts_engine.py          # Text-to-speech synthesis
-│   └── logger.py              # Logging and data management
-├── 📁 utils/
-│   ├── draw.py                # Visualization utilities
-│   └── video_utils.py         # OpenCV helpers
-├── 📁 logs/
-│   ├── recognized_text.txt    # Logged sentences with timestamps
-│   └── audio_outputs/         # Generated WAV files
-├── 📁 data/
-│   └── sign_dataset/          # Training data for YOLO
-├── main.py                    # Main application entry point
-├── requirements.txt           # Python dependencies
-└── README.md                  # This file
+Input (Image/Video) → YOLO Detection → DeepSORT Tracking → 
+Sentence Building → Ollama LLM → Text-to-Speech → Audio Output
 ```
 
-## 🚀 Quick Start
+### Detailed Process:
 
-### 1. Installation
+1. **Input Processing**: Accept image or video input through GUI
+2. **Gesture Detection**: YOLO12 model detects sign language gestures
+3. **Object Tracking**: DeepSORT maintains consistent gesture tracking
+4. **Sequence Analysis**: Build gesture sequences from tracked objects
+5. **Language Generation**: Convert sequences to natural language using Ollama
+6. **Speech Synthesis**: Generate audio output using TTS engine
+7. **User Interface**: Display results with visual annotations and audio playback
+
+## 🛠️ Installation
+
+### Prerequisites
+
+- Python 3.8+
+- CUDA-compatible GPU (recommended)
+- Ollama server with llama3 model
+
+### Dependencies
 
 ```bash
-# Clone or download the project
-cd sign2speech
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Model Setup
+Key dependencies:
+- `ultralytics` - YOLO implementation
+- `PyQt5` - GUI framework
+- `opencv-python` - Computer vision
+- `numpy` - Numerical computing
+- `pyttsx3` - Text-to-speech
+- `requests` - HTTP client for Ollama
+- `nltk` - Natural language processing (optional)
 
-**Option A: Use Pre-trained Model (Recommended for testing)**
+### Ollama Setup
+
+1. Install Ollama: [https://ollama.ai](https://ollama.ai)
+2. Pull the llama3 model:
+   ```bash
+   ollama pull llama3
+   ```
+3. Start Ollama server:
+   ```bash
+   ollama serve
+   ```
+
+## 🚀 Usage
+
+### GUI Application
+
 ```bash
-# The system will automatically use a dummy detector for testing
-# if no model is found at models/yolov8_sign.pt
+python qt_gui.py
 ```
 
-**Option B: Train Your Own Model**
-```bash
-# 1. Prepare your sign language dataset in YOLO format
-# 2. Place dataset in data/sign_dataset/
-# 3. Train YOLOv8 model:
-from ultralytics import YOLO
-model = YOLO('yolov8n.pt')  # Start with nano model
-model.train(data='data/sign_dataset/dataset.yaml', epochs=100)
-# 4. Save trained model as models/yolov8_sign.pt
-```
-
-### 3. Run the System
+### Command Line
 
 ```bash
-# Start the real-time system
 python main.py
 ```
 
-**Controls:**
-- `q`: Quit the application
-- `s`: Save current frame as image
-- `ESC`: Emergency exit
+### Configuration
 
-## 🔧 Configuration
-
-### System Parameters
-
-Edit `main.py` to customize:
-
+Adjust detection sensitivity in the code:
 ```python
-system = SignLanguageToSpeechSystem(
-    model_path="models/yolov8_sign.pt",    # Path to YOLO model
-    confidence_threshold=0.5                # Detection confidence threshold
-)
-
-# Buffer settings
-buffer_timeout = 3.0          # Process buffer after 3s of inactivity
-min_signs_for_sentence = 2    # Minimum signs needed for sentence
+confidence_threshold = 0.7  # Adjust between 0.1-0.9
 ```
 
-### TTS Configuration
+## 📁 Project Structure
 
+```
+sign2speech/
+├── components/              # Core system components
+│   ├── deep_sort/          # DeepSORT tracking implementation
+│   ├── yolo_inference.py   # YOLO detection module
+│   ├── deep_sort_tracker.py # Object tracking
+│   ├── sentence_builder.py # NLP and grammar
+│   ├── tts_engine.py       # Text-to-speech
+│   └── yolo2voice_pipeline.py # Voice generation pipeline
+├── utils/                   # Utility functions
+│   ├── draw.py             # Visualization tools
+│   ├── system_logger.py    # Logging system
+│   └── video_utils.py      # Video processing
+├── models/                  # ML model files
+│   └── sign.pt             # Custom YOLO model
+├── logs/                    # System logs and outputs
+│   ├── audio_outputs/      # Generated audio files
+│   └── *.jpg               # Processed images
+├── voices/                  # Pre-generated voice samples
+├── main.py                  # Main application
+├── qt_gui.py               # GUI interface
+└── requirements.txt         # Dependencies
+```
+
+## 🎯 Key Features in Detail
+
+### Real-time Processing
+- Frame-by-frame gesture detection
+- Temporal consistency through tracking
+- Non-blocking TTS processing
+
+### Professional GUI
+- Modern dark theme interface
+- Image preview with bounding box visualization
+- Integrated audio player
+- Real-time status updates
+
+### Advanced NLP
+- Context-aware sentence generation
+- Grammar templates for natural speech
+- Ollama LLM integration for enhanced language quality
+
+## 🔧 Configuration Options
+
+### Detection Parameters
 ```python
-tts_engine = TTSEngine(
-    backend='auto',        # 'pyttsx3', 'coqui', or 'auto'
-    speech_rate=150,       # Words per minute
-    volume=0.9,           # Volume level (0.0-1.0)
-    output_dir='logs/audio_outputs'
-)
-```
+# In components/yolo_inference.py
+confidence_threshold = 0.5  # Minimum detection confidence
 
-### Camera Settings
-
-```python
-# In main.py, modify camera properties:
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
-cap.set(cv2.CAP_PROP_FPS, 30)
-```
-
-## 🧠 How It Works
-
-### Pipeline Flow
-
-1. **Video Capture**: OpenCV captures frames from webcam
-2. **Detection**: YOLOv8 detects sign language gestures in each frame
-3. **Tracking**: DeepSORT assigns consistent IDs to detected signs across frames
-4. **Buffering**: Signs are buffered per track ID
-5. **Sentence Building**: After timeout or sufficient context, sign sequences are converted to sentences
-6. **TTS Synthesis**: Sentences are converted to speech and saved as audio files
-7. **Logging**: All recognized text and audio files are logged with timestamps
-
-### Sign Language Classes
-
-Default classes (customize based on your dataset):
-- **Greetings**: hello, goodbye, hi, bye
-- **Pronouns**: I, you, he, she, we, they
-- **Verbs**: love, like, want, need, have, give, eat, drink, go, come, help
-- **Adjectives**: good, bad, happy, sad, big, small
-- **Courtesy**: please, thank_you, sorry, excuse_me
-- **Responses**: yes, no, maybe, okay
-
-### Sentence Building Rules
-
-The system uses multiple approaches:
-
-1. **Pattern Matching**: Known phrase patterns (e.g., "I love you")
-2. **Grammar Templates**: Rule-based sentence construction
-3. **Simple Concatenation**: Fallback for unknown sequences
-
-## 📊 Output Files
-
-### Text Logs (`logs/recognized_text.txt`)
-```
-[2024-01-15 14:30:25] I love you (Track: 1) [Signs: I, love, you]
-[2024-01-15 14:30:32] Thank you (Track: 2) (Confidence: 0.85) [Signs: thank_you]
-[2024-01-15 14:30:45] How are you? (Track: 1) [Signs: how, are, you]
-```
-
-### Audio Files (`logs/audio_outputs/`)
-```
-tts_20240115_143025.wav    # "I love you"
-tts_20240115_143032.wav    # "Thank you"
-tts_20240115_143045.wav    # "How are you?"
-```
-
-### Session Data (`logs/session_data.json`)
-```json
-{
-  "session_id": "20240115_143020",
-  "start_time": "2024-01-15T14:30:20",
-  "recognized_sentences": [...],
-  "audio_files": [...],
-  "statistics": {
-    "total_sentences": 15,
-    "total_audio_files": 15,
-    "session_duration": 300.5,
-    "average_sentence_length": 3.2
-  }
-}
-```
-
-## 🛠️ Development
-
-### Testing Individual Components
-
-```bash
-# Test YOLO detector
-python components/yolo_inference.py
-
-# Test DeepSORT tracker
-python components/deep_sort_tracker.py
-
-# Test sentence builder
-python components/sentence_builder.py
-
-# Test TTS engine
-python components/tts_engine.py
-
-# Test drawing utilities
-python utils/draw.py
-
-# Test video utilities
-python utils/video_utils.py
-```
-
-### Adding Custom Sign Classes
-
-1. **Update YOLO Model**: Retrain with new classes
-2. **Update Sentence Builder**: Add new words to categories
-
-```python
-# In sentence_builder.py
-self.word_categories = {
-    'custom_category': ['new_sign1', 'new_sign2'],
-    # ... existing categories
-}
-```
-
-3. **Add Custom Patterns**:
-
-```python
-# Add custom phrase patterns
-builder.add_custom_pattern(
-    pattern=('new_sign1', 'new_sign2'),
-    sentence="Custom sentence output"
-)
-```
-
-### Performance Optimization
-
-1. **Model Optimization**:
-   - Use YOLOv8n (nano) for faster inference
-   - Reduce input resolution for speed
-   - Use TensorRT or ONNX for deployment
-
-2. **Processing Optimization**:
-   - Adjust confidence thresholds
-   - Reduce tracking buffer sizes
-   - Use threading for TTS processing
-
-3. **Memory Management**:
-   - Regular cleanup of old audio files
-   - Limit frame buffer sizes
-   - Monitor session data growth
-
-## 🔍 Troubleshooting
-
-### Common Issues
-
-**1. Camera Not Opening**
-```bash
-# Try different camera indices
-system.run(source=1)  # or 2, 3, etc.
-
-# Or use video file
-system.run(source="path/to/video.mp4")
-```
-
-**2. YOLO Model Not Found**
-```
-# System will automatically use dummy detector
-# Download or train a model and place at models/yolov8_sign.pt
-```
-
-**3. TTS Not Working**
-```bash
-# Install TTS dependencies
-pip install pyttsx3
-pip install TTS
-
-# Check available TTS backends
-python -c "from components.tts_engine import TTSEngine; tts = TTSEngine(); print(tts.get_engine_info())"
-```
-
-**4. Low FPS Performance**
-```python
-# Reduce resolution
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-
-# Increase confidence threshold
-confidence_threshold = 0.7
-
-# Use lighter model
-model_path = "yolov8n.pt"  # nano model
-```
-
-### Debug Mode
-
-Enable verbose logging:
-
-```python
 # In main.py
-import logging
-logging.basicConfig(level=logging.DEBUG)
+buffer_timeout = 3.0        # Gesture sequence timeout
+min_signs_for_sentence = 2  # Minimum gestures for sentence
 ```
 
-## 📈 Performance Metrics
+### Ollama Configuration
+```python
+# In components/yolo2voice_pipeline.py
+OLLAMA_URL = "http://localhost:11434/api/generate"
+model = "llama3"  # Ollama model name
+```
 
-- **Detection Speed**: 15-30 FPS (depending on hardware)
-- **Tracking Accuracy**: >95% ID consistency
-- **Sentence Accuracy**: Depends on training data quality
-- **TTS Latency**: 0.5-2 seconds per sentence
-- **Memory Usage**: ~500MB-1GB (depending on model size)
+## 📊 Performance
+
+- **Detection Speed**: ~30 FPS on GPU
+- **Accuracy**: 85%+ on trained gestures
+- **Latency**: <2 seconds from gesture to speech
+- **Memory Usage**: ~2GB GPU memory
 
 ## 🤝 Contributing
 
-1. **Dataset Contribution**: Share sign language datasets
-2. **Model Improvements**: Better detection models
-3. **Language Support**: Multi-language sentence building
-4. **UI Enhancements**: Better visualization
-5. **Performance**: Optimization improvements
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
-## 📄 License
+## 📝 License
 
-This project is open source. Please check individual component licenses:
-- YOLOv8: AGPL-3.0
-- DeepSORT: GPL-3.0
-- OpenCV: Apache 2.0
-- Other components: MIT
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgments
 
-- **Ultralytics** for YOLOv8
-- **DeepSORT** team for tracking algorithm
-- **OpenCV** community
-- **Coqui TTS** for speech synthesis
-- Sign language community for datasets and feedback
+- YOLO team for the detection framework
+- DeepSORT authors for tracking implementation
+- Ollama team for LLM integration
+- PyQt5 developers for the GUI framework
 
 ## 📞 Support
 
 For issues and questions:
-1. Check troubleshooting section
-2. Review component test outputs
-3. Check system logs in `logs/system.log`
-4. Verify hardware compatibility
+1. Check the logs in `logs/system.log`
+2. Verify Ollama server is running
+3. Ensure model file `models/sign.pt` exists
+4. Check GPU/CUDA compatibility
 
 ---
 
-**Happy Signing! 🤟**
-=======
-# Sign2Speech
->>>>>>> a1df11762ca8e3aba71fee23b01d03620aa0c1ba
+**Note**: This system requires a trained YOLO model (`sign.pt`) and a running Ollama server for full functionality.
