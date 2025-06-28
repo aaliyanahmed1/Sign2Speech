@@ -5,13 +5,30 @@ A comprehensive real-time system that detects sign language gestures using YOLOv
 
 ## 🎯 Features
 
-- **Real-time Sign Detection**: Custom-trained YOLOv8 model for sign language gesture recognition
-- **Multi-object Tracking**: DeepSORT tracker maintains consistent IDs across frames
-- **Natural Language Processing**: Converts sign sequences to grammatically correct sentences
-- **Text-to-Speech**: Multiple TTS backends (pyttsx3, Coqui TTS) for audio synthesis
-- **Comprehensive Logging**: Saves recognized text and audio outputs with timestamps
-- **Visual Interface**: Annotated video feed with bounding boxes, track IDs, and real-time sentences
-- **Performance Monitoring**: FPS counter and system statistics
+## 🚀 Key Features
+
+- **🔍 Real-Time Sign Detection**  
+  Uses a custom-trained YOLOv12 model to detect individual sign gestures with high accuracy.
+
+- **🎯 Multi-Object Tracking (DeepSORT)**  
+  Ensures temporal consistency by assigning persistent IDs to hands or gestures across video frames.
+
+- **🧠 NLP + LLM Sentence Generation**  
+  Detected signs are first embedded using `Sentence Transformers`, then passed as prompts to **Ollama** (local LLM) to generate fluent, context-aware sentences.
+
+- **🗣️ Natural Speech Synthesis**  
+  Converts generated sentences to spoken audio using `pyttsx3` or `Coqui TTS`.
+
+- **📺 Visual Interface**  
+  Displays annotated live video with bounding boxes, gesture classes, tracking IDs, and generated sentences in real-time.
+
+- **🧾 Logging & Audit Trail**  
+  Every recognized sentence and audio output is logged with timestamps for replay or debugging.
+
+- **📈 Performance Metrics**  
+  Includes FPS counter and system resource monitoring for real-time performance insights.
+
+
 
 ## 📂 Project Structure
 
