@@ -1,0 +1,22 @@
+ultralytics==8.0.20
+opencv-python==4.8.1.78
+torch==2.0.1
+torchvision==0.15.2
+torchaudio==2.0.2
+pyttsx3==2.90
+sentence-transformers==2.2.2
+nltk==3.8.1
+numpy==1.24.3
+scipy==1.10.1
+Pillow==9.5.0
+matplotlib==3.7.1
+soundfile==0.12.1
+librosa==0.8.0
+coloredlogs==15.0.1
+pyyaml==6.0.1  # For YAML config parsing in DeepSORT
+easydict==1.10  # For EasyDict config objects in DeepSORT
+motmetrics==1.4.0  # For evaluation metrics in DeepSORT
+pandas==2.0.3  # Use 2.0.3 for Python 3.8/3.9 compatibility
+# Optional (for debugging and progress bars)
+ipdb==0.13.13  # Only needed for debugging
+# tqdm==4.66.4  # Uncomment if you use tqdm for progress bars

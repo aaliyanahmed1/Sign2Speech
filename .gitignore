@@ -1,0 +1,16 @@
+# Environment folders
+venv/
+.venv/
+__pycache__/
+
+# Binary files
+*.dll
+*.lib
+*.pyd
+*.log
+
+# OS/IDE files
+.DS_Store
+.idea/
+.vscode/
+.ipynb_checkpoints/

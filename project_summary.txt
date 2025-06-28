@@ -1,0 +1,102 @@
+Sign2Speech - Professional Sign Language Interpreter
+Project Summary and Technical Documentation
+
+1. Project Overview
+===================
+Sign2Speech is a real-time sign language interpretation system that converts sign language gestures into natural speech. The system uses computer vision, deep learning, and natural language processing to create a seamless bridge between sign language and spoken communication.
+
+2. System Architecture
+=====================
+The project follows a modular architecture with the following key components:
+
+2.1 Core Components:
+------------------
+- YOLO12Detector: Custom YOLO model for sign language gesture detection
+- DeepSORTTracker: Object tracking system for maintaining consistent gesture identification
+- SentenceBuilder: Natural language processing for converting sign sequences to sentences
+- TTSEngine: Text-to-speech conversion for audio output
+
+2.2 Supporting Utilities:
+-----------------------
+- DrawingUtils: Visualization tools for bounding boxes and annotations
+- VideoProcessor: Video frame handling and processing
+- SystemLogger: Logging and monitoring system
+
+3. Workflow Pipeline
+===================
+3.1 Input Processing:
+-------------------
+- Accepts both image and video inputs through a professional GUI interface
+- Supports real-time video processing and batch image processing
+
+3.2 Detection Pipeline:
+---------------------
+1. YOLO Detection:
+   - Uses custom-trained YOLO12 model (sign.pt)
+   - Detects 22 different sign language gestures
+   - Implements confidence thresholding for reliable detection
+
+2. Object Tracking:
+   - DeepSORT algorithm for consistent tracking
+   - Maintains gesture history and temporal consistency
+   - Handles multiple simultaneous gestures
+
+3.3 Language Processing:
+----------------------
+1. Sentence Building:
+   - Converts gesture sequences into natural language
+   - Uses grammar templates and phrase patterns
+   - Implements context-aware sentence construction
+
+2. Voice Generation:
+   - Integrates with Ollama LLM for natural sentence generation
+   - Uses pyttsx3 for text-to-speech conversion
+   - Generates and manages audio files
+
+4. User Interface
+================
+- Professional PyQt5-based GUI
+- Dark theme with modern styling
+- Image/Video preview functionality
+- Real-time processing status updates
+- Integrated audio playback system
+
+5. Key Features
+==============
+- Real-time sign language detection
+- Multi-gesture tracking and recognition
+- Natural language sentence generation
+- Audio output with voice synthesis
+- Professional user interface
+- Logging and monitoring capabilities
+
+6. Technical Specifications
+=========================
+- Language: Python 3.8+
+- Deep Learning: YOLO12, DeepSORT
+- GUI Framework: PyQt5
+- NLP: NLTK, Custom sentence builder
+- TTS: pyttsx3
+- LLM Integration: Ollama (llama3)
+
+7. Project Structure
+==================
+/sign2speech
+├── components/         # Core system components
+├── utils/             # Utility functions and helpers
+├── models/            # ML model files
+├── logs/              # System logs and outputs
+├── voices/            # Generated audio files
+└── main.py           # Main application entry point
+
+8. Dependencies
+==============
+- ultralytics (YOLO)
+- PyQt5
+- OpenCV (cv2)
+- numpy
+- pyttsx3
+- NLTK (optional)
+- requests
+
+This project represents a sophisticated implementation of sign language interpretation, combining modern AI techniques with practical usability features for real-world applications.

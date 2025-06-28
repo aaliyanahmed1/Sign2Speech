@@ -1,0 +1,161 @@
+{
+  "session_id": "20250623_010704",
+  "start_time": "2025-06-23T01:07:04.771459",
+  "recognized_sentences": [
+    {
+      "timestamp": "2025-06-23T01:07:20.011067",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:21.943470",
+      "sentence": "Hello there!",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:34.482169",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:36.682418",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:38.826959",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:40.018502",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:40.125062",
+      "sentence": "Hello, how are you?",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:40.861039",
+      "sentence": "Hello",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:41.077765",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:44.525943",
+      "sentence": "Hello, how are you?",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:47.394232",
+      "sentence": "Hello",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:48.375883",
+      "sentence": "Hello there!",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:49.086370",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:49.617877",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:51.954212",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:53.754399",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:07:57.423903",
+      "sentence": "I need something",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:08:07.840330",
+      "sentence": "Please help",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:08:14.712962",
+      "sentence": "Thank you",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    },
+    {
+      "timestamp": "2025-06-23T01:08:15.807595",
+      "sentence": "Can you help?",
+      "confidence": 1.0,
+      "track_id": null,
+      "sign_sequence": []
+    }
+  ],
+  "audio_files": [],
+  "system_events": [
+    {
+      "timestamp": "2025-06-23T01:07:04.774479",
+      "level": "INFO",
+      "message": "Logger initialized",
+      "event_type": "general"
+    }
+  ],
+  "statistics": {
+    "total_sentences": 20,
+    "total_audio_files": 0,
+    "session_duration": 71.079142,
+    "average_sentence_length": 2.2
+  }
+}
