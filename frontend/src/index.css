@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lato:wght@300;400;700&family=Syne:wght@400;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0A0A0F;
+  color: #ECECEC;
+  font-family: 'Lato', sans-serif;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Syne', sans-serif;
+}
+
+code,
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Subtle grid line background */
+body {
+  background-image: linear-gradient(rgba(108, 63, 200, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108, 63, 200, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glassmorphism utility classes */
+.glass-panel {
+  background: rgba(10, 10, 15, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glowing-box {
+  box-shadow: 0 0 15px rgba(0, 229, 204, 0.3);
+  border: 1px solid #00E5CC;
+}

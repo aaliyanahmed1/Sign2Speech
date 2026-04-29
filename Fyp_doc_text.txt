@@ -1,0 +1,5978 @@
+Project Name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Submitted By
+
+
+
+
+
+Session
+
+
+
+
+
+
+
+
+
+Project Supervisor
+
+
+
+
+
+Department Name
+
+School of Systems and Technology
+
+University of Management and Technology
+
+C-II Johar Town Lahore Pakistan
+
+
+
+
+Dedication
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Final Approval
+
+Project Name
+
+
+
+
+
+Panel of Examiners
+
+
+
+Head of Department					______________________
+
+Department of Software Engineering
+
+University of Management and Technology
+
+Lahore
+
+
+
+
+
+
+
+
+
+Program Director ( Final Year Projects)		______________________
+
+Department of Software Engineering
+
+University of Management and Technology 
+
+Lahore 
+
+
+
+
+
+
+
+
+
+Supervisor 						______________________
+
+Department of Software Engineering
+
+University of Management and Technology 
+
+Lahore
+
+
+
+
+
+
+
+
+
+Co-Supervisor					 ______________________
+
+(If any)
+
+
+
+
+
+
+
+
+
+
+
+Documentation Evaluator				 ______________________
+
+
+
+
+
+
+Acknowledgment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Project Title			
+
+Objective			
+
+
+
+Undertaken by	
+
+
+
+Supervised by		
+
+Starting Date			
+
+
+
+Completion Date		
+
+
+
+Tools Used			
+
+Operating System		
+
+Documentation		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Plagairism Report
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Declaration Form
+
+
+
+
+
+
+
+
+
+I have carefully examined the documentation of the Final Year Project titled “Project title”; and I endorse that this documentation complies with the standards of an undergraduate level Final Year Project report.
+
+The document has been checked for plagiarism through Turnitin software available in UMT Library. The similarities of the document are within acceptable range. 
+
+Moreover, the accompanying CDs contain PDF of the documentation, as well as the source code and binaries with user manual and installation guide. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FYP Supervisor Name: ______________________________
+
+
+
+
+
+Signature: __________________				Date:___________________
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+Abstract
+
+
+
+
+
+
+
+
+
+Revision Chart
+
+This chart contains a history of this document’s revisions. The entries below are provided solely for illustration purposes. Those entries should be deleted until the revision/s they refer to have actually been created. 
+
+The document itself should be stored in revision control, and a brief description of each version should be entered in the Revision Control System. A brief description can be repeated in this section. Revisions need not be described elsewhere in the document, unless they explain the document.
+
+
+
+Version
+
+Primary Author(s)
+
+Description of Version
+
+Date Completed
+
+Draft
+
+TBD
+
+Initial draft created for distribution and review comments
+
+(To be decided) TBD
+
+Preliminary
+
+TBD
+
+Second draft incorporating initial review comments, distributed for final review
+
+TBD
+
+Final
+
+TBD
+
+First complete draft, which is placed under change control
+
+TBD
+
+Revision 1
+
+TBD
+
+Revised draft, revised according to the change control process and maintained under change control
+
+TBD
+
+Revision 2
+
+TBD
+
+Revised draft, revised according to the change control process and maintained under change control
+
+TBD
+
+Etc.
+
+TBD
+
+TBD
+
+TBD
+
+
+
+
+
+
+
+	
+
+
+
+Table of Contents
+
+New paragraphs formatted as Heading 1, Heading 2, and Heading 3 will be added to the table automatically. To update this table of contents in Microsoft Word, put the cursor anywhere in the table and press F9. If you want the table to be easy to maintain, do not change it manually.
+
+	Table of Contents	1
+
+	Definitions and Acronyms	4
+
+	List of Figures	5
+
+	List of Tables	7
+
+		1.	Introduction	8
+
+		1.1	Problem Statement	9
+
+		1.2	Objectives	9
+
+		1.3	Scope of the Project	9
+
+		1.4	Significance of the Project	10
+
+		1.5	Artiificial Intelligence features	10
+
+		1.6	Project Deliverables	10
+
+		2.	Domain Analysis	11
+
+		2.1	Customer	11
+
+		2.2	Stakeholders	11
+
+		2.3	Affected Groups with social or economic impact	12
+
+		2.4	Dependencies/ External Systems	13
+
+		2.5	Related Projects with feature comparision	14
+
+	2.5.1	Related Projects	14
+
+	2.5.2	Feature Comparison	15
+
+		2.6	Context Diagram	16
+
+		2.7	Data Flow Diagram Level 0	17
+
+		3.	Requirements analysis	19
+
+		3.1	List of Actors	19
+
+		3.2	Product Backlog	19
+
+	3.2.1	Course Catalog	22
+
+	3.2.2	Account Management	23
+
+	3.2.3	Course Creation	25
+
+	3.2.4	Buying Courses	26
+
+	3.2.5	License Admin	27
+
+	3.2.6	Viewing Courses	28
+
+	3.2.7	Course Completion	29
+
+	3.2.8	Miscellaneous	29
+
+	3.2.9	Forms	30
+
+	3.2.10	Announcements	31
+
+	3.2.11	Quizzes	31
+
+	3.2.12	Non-Functional Requirements	33
+
+	3.2.13	Affiliates	33
+
+	3.2.14	Comments	34
+
+	3.2.15	Course Evaluation	34
+
+	3.2.16	Reporting	35
+
+		3.3	Figma UI/UX Designs	37
+
+		4.	Project Planning and Execution using Sprints	53
+
+		4.1	Jira	53
+
+		4.2	Slack	53
+
+		4.3	Github Repository	53
+
+		4.4	Sprint 1	53
+
+	4.4.1	Sprint 1 Planning Meeting Minutes	53
+
+	4.4.2	Sprint 1 Backlog	55
+
+	4.4.3	Sprint 1 Design Class Diagram	58
+
+	4.4.4	Sprint 1 Sequence Diagram	59
+
+	4.4.5	Sprint 1 Decision Table	60
+
+	4.4.6	Sprint 1 Extended Test Cases	61
+
+	4.4.7	Sprint 1 Review Meeting	62
+
+	4.4.8	Sprint 1 Retrospective Meeting	64
+
+		5.	System Architecture	66
+
+		5.1	System context Diagram	66
+
+		5.2	System Container Diagram	67
+
+		5.3	Component Diagram	68
+
+		5.4	Code Diagrams	69
+
+		5.5	ERD	70
+
+		5.6	Data Dictionary	72
+
+		6.	Implementation details	73
+
+		6.1	Development Setup	73
+
+		6.2	Deployment setup	73
+
+		6.3	Algorithms	73
+
+		6.4	Constraints	73
+
+	6.4.1	Assumptions	73
+
+	6.4.2	System constraints	73
+
+	6.4.3	Restrictions	73
+
+	6.4.4	Limitations	73
+
+		7.	Project Monitoring, control and traceability	74
+
+		7.1	Traceability Matrix	74
+
+	7.1.1	Requirements vs Prototype (PB-ID vs PID)	74
+
+	7.1.2	Requirements vs Test Cases (PB-ID vs TID)	75
+
+		8.	Results/Output/Statistics	77
+
+		8.1	%completion	77
+
+		8.2	%accuracy	77
+
+		8.3	%correctness	77
+
+		9.	Conclusion	78
+
+		10.	Future work	79
+
+		11.	Bibliography	80
+
+		11.1	Books	80
+
+		11.2	Journals	80
+
+		11.3	Articles	80
+
+		11.4	Research papers	80
+
+		11.5	Other References	80
+
+		12.	Appendix	81
+
+		12.1	Glossary of terms	81
+
+		12.2	Pre-requisites	81
+
+
+
+
+
+
+Definitions and Acronyms
+
+Provide definitions or references to all the definitions of the special terms and acronyms used within this document
+
+
+
+
+
+Table 1 : List of acronyms and definitions
+
+Acronym
+
+Definition
+
+UMT
+
+University of Management and Technology
+
+CTS
+
+Chemical Tracking System
+
+
+List of Figures
+
+New figures that are given captions will be added to the table automatically. 
+
+Insert caption:
+
+select picture
+
+right click
+
+select “insert caption”
+
+under “options”,  choose label as “figure”
+
+Under “caption”, an automatic insertion of “figure no” will appear. Give your figure an appropriate caption 
+
+Update list of figures:To update this list in Microsoft Word, put the cursor anywhere in the table and press F9.
+
+Note:  If you want the table to be easy to maintain, do not change it manually.
+
+
+
+Figure 1: Context Diagram - Chemical Tracking System [1]	16
+
+Figure 2: Data Flow Diagram - Chemical Tracking System[1]	17
+
+Figure 3: Epic vs User Story in Product Backlog [1]	19
+
+Figure 4: Prototype - PID1- Sign Up Page UI	37
+
+Figure 5: Prototype - PID2- Sign In Page UI	38
+
+Figure 6: Prototype - PID3- Home Page UI  Partial	39
+
+Figure 7: Prototype - PID4- Course Listing Page	40
+
+Figure 8: Prototype - PID5- Course Details Page	41
+
+Figure 9: Prototype - PID6- Cart Page	42
+
+Figure 10: Prototype - PID7- Checkout Page	43
+
+Figure 11: Prototype - PID8- Instructor Registration Page	44
+
+Figure 12: Prototype - PID9- Instructor Listing Page	45
+
+Figure 13: Prototype - PID10- Instructor Detail Page	46
+
+Figure 14: Prototype - PID11- Student Registration Page	47
+
+Figure 15: Prototype - PID12- Pricing Page	48
+
+Figure 16: Prototype - PID13- Event Listing Page	49
+
+Figure 17: Prototype - PID14- Event Detail Page	50
+
+Figure 18: Prototype - PID14- 404 Page	51
+
+Figure 19: Prototype - PID14- FAQs Page	52
+
+Figure 20: Class diagram of Sprint 1 features [4]	58
+
+Figure 21: Sample Sprint 1 Sequence diagram POS 1 [2]	59
+
+Figure 22: Sample Sprint 1 Sequence diagram POS [2]	60
+
+Figure 23: Sample Sprint 1 Decision Table Chemical Tracking System	60
+
+Figure 24: System context Diagram [5]	66
+
+Figure 25: System container Diagram [5]	67
+
+Figure 26: Component Diagram [5]	68
+
+Figure 27: Component Diagram [5]	69
+
+Figure 28: ER Diagram for University Scenario [3]	71
+
+Figure 29: Data Dictionary of Chemical Tracking System [1]	72
+
+
+
+
+List of Tables
+
+New Tables that are given captions will be added to the table automatically. 
+
+Insert caption:
+
+select table
+
+right click
+
+select “insert caption”
+
+under “options”,  choose label as “table”
+
+Under “caption”, an automatic insertion of “table no” will appear. Give your table an appropriate caption 
+
+Update table: To update this table of contents in Microsoft Word, put the cursor anywhere in the table and press F9.
+
+Note:  If you want the table to be easy to maintain, do not change it manually.
+
+
+
+Table 1 : List of acronyms and definitions	4
+
+Table 2: List of Stakeholders	11
+
+Table 3: Feature comparison of our product with competitors	15
+
+Table 4: Selected Features of Product Backlog	53
+
+Table 5: Team Capacity Sprint 1	55
+
+Table 6: Sprint 1 Backlog	55
+
+Table 7: Sprint 1 Exteneded Test Case	61
+
+Table 8: Status of Sprint 1 Backlog	62
+
+
+
+
+
+Introduction
+
+Background: Introduce the domain or field of the project. Explain the general area of study and how the project fits into it. Provide a brief history or evolution of related technologies or issues.. 
+
+
+Example
+
+Contoso Pharmaceuticals is a research-intensive company engaged in the development of new drugs. The company employs multiple chemists and pharmacists who work across various laboratories are involved in research and development of new drugs, They extensively use a wide range of chemicals for research and experimentation. However, there is no centralized system in place to track the availability and usage of chemicals across the organization. This leads to inefficient procurement practices, duplication of chemical purchases, and non-compliance risks with government safety regulations concerning sensitive substances. 
+
+Theis no track of chemical in the company. One chemical is ordered and received by one chemist or Pharmacist. Container is usually not used entirely but other people don’t know the availability of that chemical in the company. Therefore, whenever someone else needed that same chemical, they again order the same chemical. This result in his financial burden on the company. In addition to this problem, there is another issue of government health and safety department reporting. There are some sensitive dual usage chemicals, for example chemical named ephedrine is used in drugs to treat hypotension but it can also be used to make heroine, an infamous illegal narcotic. Government also need Pharmaceutical companies to submit the report of usage of sensitive chemicals in the company in order to avoid misuse of these sensitive chemicals. 
+
+There is a need to develop a Chemical tracking system. “The system should keep track of all the chemical containers that company already have in the stockroom and in laboratories. In this way, the chemists can get some chemicals from someone down the hall instead of always buying a new container. This should save us a lot of money. Also, the Health and Safety Department needs to generate government reports on chemical usage and disposal with a lot less work than it takes them today. 
+
+The company will route orders to buy chemicals from Chemists or Pharmacists to vendors (companies who supply the chemicals) for fulfillment, the vendors will send chemical containers and invoices to Contoso Pharmaceuticals, and Contoso’s purchasing department will pay the vendors. However, those processes take place outside the scope of the Chemical Tracking System, as part of the operations of the purchasing and receiving departments. It clear that this system is not directly involved in placing orders with the vendors, receiving the products, or paying the bills. This is done offline manually.
+
+The absence of an inventory tracking mechanism often results in multiple purchases of the same chemical, even when partially used containers are already available within the premises. This practice incurs unnecessary financial costs. Additionally, due to the presence of dual-use chemicals such as ephedrine—which is used in both legitimate pharmaceutical products and illegal narcotics—there is a pressing need to comply with government reporting requirements regarding the use and disposal of such substances.
+
+A Chemical Tracking System is essential for addressing these challenges. The proposed system will maintain a real-time record of chemical inventory in stockrooms and labs, improve internal visibility, reduce redundant purchases, and facilitate easy generation of compliance reports.
+
+Problem Statement
+
+Introduce the domain or field of the project.
+
+Explain the general area of study and how the project fits into it.
+
+Provide a brief history or evolution of related technologies or issues.
+
+Example
+
+Currently, there is no digital system to monitor or track chemical inventory within Contoso Pharmaceuticals. Chemists and pharmacists often unknowingly reorder chemicals that are already available in another lab or storage area. This results in inefficient use of resources and unnecessary financial expenditures. Furthermore, manual processes for regulatory reporting on sensitive chemicals are time-consuming and error-prone, exposing the company to compliance risks. 
+
+
+
+Objectives
+
+List the main goals the project aims to achieve.
+
+Include both primary and secondary objectives if applicable.
+
+Example
+
+The primary objectives of this project are:
+
+- To develop a centralized Chemical Tracking System for recording chemical container availability across all laboratories and storage facilities.
+
+- To enable real-time visibility of chemical inventory to all authorized personnel.
+
+- To minimize redundant chemical purchases through better resource utilization.
+
+- To facilitate automated report generation for government regulatory bodies regarding the usage and disposal of sensitive chemicals.
+
+
+
+Scope of the Project
+
+Define the boundaries of the project.
+
+Explain what will be included and what is beyond the scope (limitations).
+
+Example
+
+Included in Scope:
+
+- Development of a web-based system to record and view the status of chemical containers.
+
+- User roles for chemists, lab managers, and administrators.
+
+- Inventory search and request features.
+
+- Logging of usage and disposal of sensitive chemicals.
+
+- Report generation module for regulatory compliance.
+
+Out of Scope:
+
+- Integration with external vendor systems.
+
+- Payment processing and vendor communication (done manually by the purchasing department).
+
+- Receiving and shipping operations.
+
+Significance of the Project
+
+Explain the importance and expected impact of the project.
+
+Discuss how it contributes to academia, industry, or society.
+
+Example
+
+This system will significantly reduce the financial burden on Contoso Pharmaceuticals by preventing duplicate chemical purchases. It will also enhance collaboration among research personnel through improved visibility into chemical availability. Most importantly, the system will streamline the regulatory reporting process, helping the company avoid penalties and meet compliance obligations related to hazardous and dual-use chemicals.
+
+Artiificial Intelligence features
+
+This section should describe the scenarios where AI can be used in the project.
+
+Example
+
+To further enhance the functionality and value of the Chemical Tracking System, Artificial Intelligence (AI) can be integrated into the system. 
+
+The following are three key AI-based scenarios that are relevant and beneficial for the proposed project: 
+
+Predictive Inventory Management: Using machine learning algorithms, the system can analyze historical usage data of chemicals to forecast future demand. This allows the company to: - Proactively manage inventory and reduce chemical waste. - Automatically suggest optimal reorder points for critical chemicals. - Prevent stockouts or overstocking of commonly used substances. 
+
+Anomaly Detection for Misuse of Sensitive Chemicals: An AI-powered anomaly detection module can monitor the usage patterns of dual-use or sensitive chemicals (e.g., ephedrine). It can: - Detect unusual activity such as excessive withdrawals or abnormal usage frequency. - Flag potential misuse or unauthorized access to restricted chemicals. - Generate real-time alerts to safety officers and compliance teams. 
+
+Automated Regulatory Report Generation: Natural Language Processing (NLP) and data extraction techniques can be used to: - Automatically generate required government compliance reports in standardized formats. - Summarize chemical usage logs in human-readable formats. - Reduce manual workload for the Health and Safety Department, ensuring timely and accurate reporting.
+
+Project Deliverables
+
+List the expected outputs (e.g., software application, report, hardware prototype).
+
+
+
+Example
+
+- A functional web-based Chemical Tracking System.
+
+- User manual and documentation.
+
+- Sample data and test cases.
+
+- Government-compliance report templates.
+
+- Final report and project presentation.
+
+
+
+Domain Analysis
+
+Customer
+
+A brief description of the client with whom you are working (or the potential customers). The organization, its products/services etc.
+
+You will fill this section only if you have a client (contracted) .
+
+Contoso Pharmaceuticals is product customer.  It is a pharmaceutical company with skills and team in new drug discovery and development. They have a highly skilled team of chemists and Pharmacist working in different labs that are involved in research and development of new drugs. They extensively use different chemicals for research and experimentation. 
+
+Stakeholders
+
+List of all stakeholders along with their roles in making of the system e.g
+
+
+
+Table 2: List of Stakeholders
+
+Stakeholder
+
+Role in System
+
+Chemists / Pharmacists
+
+Use chemicals for research and experimentation in laboratories.
+
+Record the usage, quantity, and disposal of chemicals through the system.
+
+Check inventory availability before placing new requests.
+
+Request chemicals from the stockroom or other labs.
+
+Ensure proper labeling and safety compliance during handling.
+
+Buyers
+
+Receive chemical requests from chemists and pharmacists.
+
+Place purchase orders with external vendors (this is outside the system scope but influenced by it).
+
+Coordinate delivery and invoice processing with vendors.
+
+Update the system manually after receiving new chemical containers.
+
+Chemical Stockroom Staff
+
+Manage the physical storage and distribution of chemicals.
+
+Update the system with details of received, available, and dispensed chemicals.
+
+Fulfill chemical requests raised by chemists or pharmacists.
+
+Ensure chemicals are stored according to safety regulations.
+
+Health and Safety Department
+
+Monitor and enforce safety standards for handling hazardous chemicals.
+
+Verify that staff members are trained and certified to use specific hazardous or controlled substances.
+
+Audit chemical usage logs to ensure compliance with internal and external regulations.
+
+Generate and submit periodic reports to government authorities regarding the use, storage, and disposal of sensitive or controlled chemicals (e.g., ephedrine).
+
+System Administrator / IT Support
+
+Maintain user accounts, roles, and system access controls.
+
+Ensure data integrity, backup, and security of the chemical tracking system.
+
+Provide technical support and maintain system uptime.
+
+Government Regulatory Authorities (External Stakeholder)
+
+Not direct users of the system but receive reports generated by the Health and Safety Department.
+
+Enforce compliance regulations regarding controlled substances.
+
+Review chemical usage data for auditing and legal compliance purposes.
+
+
+
+
+
+Affected Groups with social or economic impact
+
+Those impacted by the deployment of the system. This can be a simple list as well as a bulleted one with short explanations.Link them with your objectives
+
+e.g.
+
+Sales staff
+
+There will be reduced paper work for them. Also they will be able to provide better customer care as system will help them respond to queries quickly.
+
+This may include users as well as support groups
+
+
+
+Contoso Pharmaceuticals (Organization-wide)
+
+Economic Impact: The company will benefit from reduced waste, fewer redundant purchases, and more efficient resource utilization, leading to significant cost savings.
+
+Social Impact: Improved operational efficiency enhances the company’s reputation as a responsible and compliant pharmaceutical company.
+
+Research and Development (R&D) Teams
+
+Economic Impact: Faster access to required chemicals improves productivity and shortens drug development cycles, indirectly improving revenue potential.
+
+Social Impact: Scientists work in a safer, more accountable environment with better collaboration among labs.
+
+Health and Safety Personnel
+
+Economic Impact: Reduced time and effort in compliance reporting and manual inspections, allowing the department to allocate resources more effectively.
+
+Social Impact: Improved workplace safety and lower risk of accidents, chemical exposure, or misuse of hazardous substances.
+
+Government Regulatory Bodies
+
+Social Impact: Improved regulatory compliance and transparency help government agencies monitor and control the usage of dual-use or hazardous chemicals, protecting public health and security.
+
+Economic Impact: Reduced costs in enforcement and auditing due to better self-regulation by companies like Contoso.
+
+Local Community / General Public
+
+Social Impact: Enhanced chemical safety protocols reduce the risk of leaks, spills, or misuse, improving environmental health and community safety.
+
+Economic Impact: Preventing fines or shutdowns due to non-compliance helps maintain local employment and economic activity.
+
+
+
+Chemical Suppliers / Vendors
+
+Economic Impact: Improved demand forecasting and order efficiency may reduce overstocking and streamline logistics for suppliers.
+
+Social Impact: Strengthened business relationships with a compliant and efficient client.
+
+
+
+Dependencies/ External Systems
+
+Systems and/ or products, this project depends upon for its completion.
+
+e.g.  
+
+	Cyber Cash
+
+Enterprise Resource Planning (ERP) System
+
+Purpose: Manages procurement, finance, inventory, and human resources.
+
+Interaction: Purchase orders and invoices are processed here; chemical tracking data (like low inventory alerts) may influence procurement decisions.
+
+
+
+Vendor Management Systems / Supplier Portals
+
+Purpose: Used by the purchasing department to place chemical orders with suppliers.
+
+Interaction: The chemical tracking system may inform purchasing decisions, but the actual order and fulfillment process takes place in external vendor systems.
+
+
+
+Government Compliance Reporting Systems
+
+Purpose: Platforms provided by regulatory authorities for submitting chemical usage and safety compliance reports.
+
+Interaction: The Health and Safety Department generates reports using data from the tracking system and uploads them to government portals (e.g., for controlled substances like ephedrine).
+
+
+
+Learning Management System (LMS) or Training Records Database
+
+Purpose: Manages staff training and certifications.
+
+Interaction: Health and Safety staff may need to verify whether a chemist is trained to handle hazardous chemicals by accessing records in this external system.
+
+
+
+Inventory or Warehouse Management Systems (WMS)
+
+Purpose: Handles the logistics of chemical storage and retrieval at scale.
+
+Interaction: In larger operations, a WMS may handle physical stock movement while the chemical tracking system focuses on chemical-level detail and regulatory data.
+
+
+
+Laboratory Information Management System (LIMS)
+
+Purpose: Manages lab workflows, experiment tracking, and sample data.
+
+Interaction: Lab staff might cross-reference chemicals used in experiments with the tracking system.
+
+
+
+Financial/Accounting Systems
+
+Purpose: Tracks spending, budgeting, and vendor payments.
+
+Interaction: While not directly connected, reports from the tracking system may inform financial analysis or audits.
+
+Related Projects with feature comparision
+
+Provide references to all related projects that are offering similar functionalities and compare your idea with that project.
+
+Related Projects
+
+List of all the documents/ projects that you have looked up as reference material for this project along with their links/references. E.g
+
+
+
+Enterprise Resource Planning (ERP) Systems
+
+Purpose: Integrate core business processes, including procurement, finance, and inventory management.
+
+Examples: SAP, Oracle NetSuite, Microsoft Dynamics.
+
+Relevance: While ERPs manage overall business operations, they may lack specialized features for detailed chemical tracking and compliance.
+
+
+
+Laboratory Information Management Systems (LIMS)
+
+Purpose: Manage laboratory workflows, sample tracking, and data management.
+
+Examples: LabWare, LabCollector, QBench.
+
+Relevance: LIMS are tailored for laboratory environments, offering functionalities like sample tracking and experiment data management.
+
+
+
+Warehouse Management Systems (WMS)
+
+Purpose: Oversee warehouse operations, including inventory tracking and order fulfillment.
+
+Examples: Fishbowl, NetSuite WMS, Manhattan Associates.
+
+Relevance: WMS focus on the physical movement and storage of goods but may not provide detailed chemical compliance features.
+
+
+
+Chemical Inventory Management Software
+
+Purpose: Specifically designed to track chemical inventories, ensure safety compliance, and manage hazardous materials.
+
+Examples: Chemical Safety's EMS, Quartzy, ChemInventory.
+
+Relevance: These systems offer specialized features like Safety Data Sheet (SDS) management, regulatory reporting, and hazard classification.
+
+
+
+
+
+Feature Comparison
+
+
+
+Table 3: Feature comparison of our product with competitors
+
+Feature / System
+
+ERP Systems
+
+LIMS
+
+WMS
+
+Chemical Inventory Software
+
+Primary Focus
+
+Business Processes
+
+Laboratory Workflows
+
+Warehouse Operations
+
+Chemical Compliance & Tracking
+
+Chemical Tracking
+
+Limited
+
+Moderate
+
+Limited
+
+Extensive
+
+Safety Data Sheet (SDS) Management
+
+No
+
+Partial
+
+No
+
+Yes
+
+Regulatory Compliance Reporting
+
+Limited
+
+Partial
+
+No
+
+Yes
+
+Hazard Classification
+
+No
+
+Partial
+
+No
+
+Yes
+
+Integration with Procurement Systems
+
+Yes
+
+Partial
+
+Yes
+
+Partial
+
+Sample Management
+
+No
+
+Yes
+
+No
+
+No
+
+Inventory Optimization
+
+Yes
+
+No
+
+Yes
+
+Partial
+
+User Training Management
+
+No
+
+Partial
+
+No
+
+Partial
+
+Cost
+
+High
+
+Moderate to High
+
+Moderate
+
+Moderate
+
+
+
+
+
+
+
+
+Context Diagram
+
+The scope [1] description establishes the boundary and connections between the system you’re developing and everything else in the universe. The context diagram visually illustrates this boundary. It identifies external entities (also called terminators) outside the system that interface to it in some way, as well as data, control, and material flows between the terminators and the system. The context diagram is the top level in a data flow diagram developed according to the principles of structured analysis.
+
+Figure below illustrates a portion of the context diagram for the Chemical Tracking System. The entire system is depicted as a single circle; the context diagram deliberately provides no visibility into the system’s internal objects, processes, or data. The “system” inside the circle could encompass any combination of software, hardware, and human components. Therefore, it could include manual operations as part of the entire system. The external entities in the rectangles can represent user classes (Chemist, Buyer), organizations (Health and Safety Department), other systems (Training Database), or hardware devices (Bar Code Reader). The arrows on the diagram represent the flow of data (such as a request for a chemical) or physical items (such as a chemical container) between the system and its external entities.1
+
+
+
+
+
+
+
+Figure 1: Context Diagram - Chemical Tracking System [1]
+
+Data Flow Diagram Level 0
+
+Identifies actual data flows and data stores
+
+DFDs [1] provide a big-picture view of how data moves through a system, which other models don’t show well. Various people and systems execute processes that use, manipulate, and produce data. Other diagram can’t show you the full life cycle of a piece of data. Multiple pieces of data might be pulled together and transformed by a process (for example, shopping cart contents plus shipping information plus billing information are transformed into an order object).
+
+You are explaining the context diagram into a level 0 DFD which partitions the system into its major processes. Following Figure shows a partial level 0 DFD for the Chemical Tracking System.1
+
+
+
+Figure 2: Data Flow Diagram - Chemical Tracking System[1]
+
+
+
+The single circle that represented the entire Chemical Tracking System on the context diagram has been subdivided into six major processes (the process bubbles). As with the context diagram, the external entities are shown in rectangles. All data flows (arrows) from the context diagram also appear on the level 0 DFD. In addition, the level 0 diagram contains several data stores, depicted as a pair of parallel horizontal lines, which are internal to the system and therefore do not appear on the context diagram. A flow from a bubble to a store indicates that data is being placed into the store, a flow out of the store shows a read operation, and a bidirectional arrow between a store and a bubble indicates an update operation.
+
+Each process that appears as a separate bubble on the level 0 diagram can be further expanded into a separate DFD to reveal more detail about its functioning
+
+Requirements analysis
+
+List of Actors
+
+We are giving a sample list of Actors of online Learning platforms such as udemy or coursera.or our own developed by UMT named https://livex.tech/
+
+Define the system boundary and list all actors with the user stories.of all the actors must also be mentioned in your list of stakeholders  
+
+For example:
+
+Instructor; who creates a course one an online learning platform
+
+Participant; this person who registers in a course and attempt, quizzes, assignments and exam and earn a certificate.
+
+Site Visitor; this person who is interested in online learning platform.
+
+Company User; this person who represents a company. On company license multiple employees of the company can use on online learning platform.
+
+Search Engine: Search Engine bots need to view a site map so that all pages are indexed.
+
+Partner Company: They provide links to our web site and get paid for referring people to the site.
+
+Product Backlog
+
+We are giving a sample Product backlog of online Learning platforms such as udemy or coursera or our own developed by UMT named https://livex.tech/
+
+Online learning platforms are digital spaces where people can learn new skills, gain knowledge, and advance their education, all from the comfort of their own homes. Think of them as virtual schools or universities, but with a lot more flexibility and accessibility. 
+
+Following are important concepts related to Product backlog:
+
+
+
+
+
+Figure 3: Epic vs User Story in Product Backlog [1]
+
+
+
+
+
+Sprint:
+
+In Agile project management, a sprint is a fixed-length period during which a team works to complete a set of tasks and deliver a potentially shippable increment of product. Sprints are typically one to four weeks long, but two to three weeks is a common duration.
+
+Epic:
+
+An epic is a user story that is too large to fully implement in a single iteration. Its a multi-sprint project goal or a broad area of functionality that requires significant development effort.  Because epics span iterations, they must be split into sets of smaller stories. Sometimes epics are large enough that they must be subdivided into multiple epics, each of which is then split into multiple stories until each resulting story can be reliably estimated and then implemented and tested within a single iteration. Breaking epics down into smaller epics and then into user stories is often referred to as story decomposition  
+
+Scope:
+
+Covers multiple releases or iterations and often spans across several teams. 
+
+Purpose:
+
+Provides a high-level overview of the project and helps in prioritizing and planning the release. 
+
+Example:
+
+"Implement e-commerce functionality". 
+
+Feature:
+
+A specific piece of functionality or a deliverable within an Epic that provides value to the user. 
+
+Scope:
+
+Smaller than an Epic and can be developed and released in a single iteration. 
+
+Purpose:
+
+Breaks down the Epic into manageable chunks and guides the development process. 
+
+Example:
+
+"Product listing page," "Order page," "Payment page" within the "e-commerce functionality" Epic. 
+
+
+User Story:
+
+A user story is a “short, simple description of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system”. User stories are sized so as to be fully implementable in a single iteration. Each completed user story iteratively builds the feature. User stories often are written according to the following template, although other styles also are used:
+
+As a <type of user>, I want <some goal> so that <some reason OR Benefit>. 
+
+Scope:
+
+The smallest unit of work that can be delivered within a sprint. 
+
+Purpose:
+
+Captures the requirements of a feature in a way that is easy for developers to understand and implement. 
+
+Example:
+
+"As a user, I want to add items to my shopping cart so that I can buy them later"
+
+
+
+
+
+Acceptance Criteria
+
+A set of conditions or rules that a user story must satisfy to be considered "done" and accepted by the product owner.
+
+Purpose:
+
+To define what success looks like for a user story.
+
+Written by:
+
+Usually written by the product owner, sometimes with input from QA and developers.
+
+Format:
+
+Often in plain language or BDD style (Given-When-Then).
+
+Example:
+
+User Story: As a user, I want to reset my password so I can access my account if I forget it.
+
+Acceptance Criteria:
+
+The user must be able to request a password reset by entering their email.
+
+The system must send a reset link if the email is registered.
+
+The reset link must expire in 24 hours.
+
+The user must be able to set a new password via the reset link.
+
+
+
+Story Point:
+
+In Agile, story points are a relative unit of measurement used to estimate the effort required to complete a user story or other piece of work. They are not time-based but rather represent the complexity and effort relative to other items on the backlog.
+
+Key aspects of story points range in Agile:
+
+Relative, not absolute:
+
+Story points are assigned relative to other tasks, meaning a story with 2 points is roughly twice as complex as a story with 1 point.  
+
+No specific time value:
+
+Story points don't directly equate to hours or days; they represent a degree of effort or complexity. 
+
+Common scales:
+
+Teams often use scales like Fibonacci (1, 2, 3, 5, 8, 13...)
+
+Benefits:
+
+Story points help teams estimate work, plan sprints, and manage expectations, rather than focusing on individual time estimates.
+
+
+
+Backlog grooming:
+
+It is a process where the product owner and development team collaboratively review and refine the product backlog. It is a crucial practice in Agile project management that involves regularly updating and refining the product backlog. It focuses on ensuring the backlog is well-defined, prioritized, and ready for upcoming sprint cycles, ultimately contributing to a more efficient and effective development process. 
+
+This includes activities like:
+
+Refining user stories: Making sure they are clear, concise, and easy to understand. 
+
+Breaking down large items: Dividing complex tasks into smaller, more manageable units. 
+
+Estimating effort: Assessing how much work each item will require. 
+
+Prioritizing items: Determining which tasks should be tackled first. 
+
+Adding new items: Incorporating newly discovered requirements or features. 
+
+Removing outdated items: Eliminating items that are no longer relevant. 
+
+Why it's important:
+
+Improves sprint planning:
+
+A well-groomed backlog allows the team to effectively plan and execute sprints. 
+
+Enhances collaboration:
+
+The process promotes communication and collaboration between the product owner and development team. 
+
+Increases predictability:
+
+By refining the backlog, the team can better predict the scope and effort required for upcoming sprints. 
+
+Keeps the backlog up-to-date:
+
+Ensures the backlog reflects the latest needs and priorities of the product. 
+
+Benefits:
+
+Increased velocity:
+
+By optimizing the backlog, the team can work more efficiently and deliver more value.
+
+Reduced risk:
+
+A well-defined backlog helps to minimize the risk of scope creep and delays.
+
+Improved team morale:
+
+When the team understands what they are working on and why, they are more motivated and engaged
+
+
+
+Sub headings in this section are epics and each epic contain multiple user stories.
+
+Course Catalog
+
+PB-ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+CC-01
+
+As an instructor, I can create a description of a course so that prospective participants can learn about it.
+
+High
+
+- Instructor can add/edit a course description.
+- Course description is saved and displayed correctly.
+
+3
+
+Pending
+
+CC-02
+
+As an instructor, I can maintain a bio about myself so that it is used on any course listing for which I’m the instructor.
+
+Medium
+
+- Instructor can add/update bio.
+- Bio appears on all relevant course pages.
+
+2
+
+Pending
+
+CC-03
+
+As a site visitor, I can view a detailed page about each course so that I can learn all about it.
+
+High
+
+- Course page displays course title, description, instructor bio, and related courses.
+- Videos and syllabus are visible.
+
+3
+
+Pending
+
+CC-04
+
+As a site visitor, I can browse a catalog of all courses available so that I can pick the right one for me.
+
+High
+
+- Course catalog lists all available courses.
+- Filter and search functionality work correctly.
+
+5
+
+Pending
+
+CC-05
+
+As a site visitor, I can see a list of other related courses when viewing a course so that I can see other courses I might be interested in.
+
+Medium
+
+- Related courses are displayed based on category, instructor, or tags.
+
+3
+
+Pending
+
+
+
+
+Account Management
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+AM-01
+
+As an instructor, I can create a description of a course so that prospective participants can learn about it.
+
+High
+
+- Instructor can add/edit a course description.
+- Course description is saved and displayed correctly.
+
+3
+
+Pending
+
+AM-02
+
+As an instructor, I can sign, login and maintain a bio about myself so that it is used on any course listing for which I’m the instructor.
+
+Medium
+
+- Instructor can add/update bio.
+- Bio appears on all relevant course pages.
+
+2
+
+Pending
+
+AM-03
+
+As a site visitor, I can view a detailed page about each course so that I can learn all about it.
+
+High
+
+- Course page displays course title, description, instructor bio, and related courses.
+- Videos and syllabus are visible.
+
+3
+
+Pending
+
+AM-04
+
+As a site visitor, I can browse a catalog of all courses available so that I can pick the right one for me.
+
+High
+
+- Course catalog lists all available courses.
+- Filter and search functionality work correctly.
+
+5
+
+Pending
+
+AM-05
+
+As a site visitor, I can see a list of other related courses when viewing a course so that I can see other courses I might be interested in.
+
+Medium
+
+- Related courses are displayed based on category, instructor, or tags.
+
+3
+
+Pending
+
+AM-06
+
+As a student, I can Sign up, login into the system and see my registered courses (if any).
+
+Medium
+
+Courses are displayed
+
+3
+
+Pending
+
+
+
+
+
+
+Course Creation
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+CC-06
+
+As an instructor, I can upload videos to be part of a course so that participants can watch those videos.
+
+High
+
+- Instructor can upload and organize videos.
+- Videos play correctly on all devices.
+
+5
+
+Pending
+
+CC-07
+
+As an instructor, I can create a quiz to include in a video course so that participants can take those quizzes to ensure they are learning.
+
+Medium
+
+- Instructor can add questions and answers.
+- Participants can submit answers and get immediate feedback.
+
+3
+
+Pending
+
+CC-08
+
+As an instructor, I can properly sequence the elements of a course so that I can assemble them into an amazing course.
+
+Medium
+
+- Instructor can arrange content in preferred order.
+- Course displays in the correct sequence.
+
+3
+
+Pending
+
+CC-09
+
+As an instructor, I can set the publication date for course elements so that items become available when I want and not sooner.
+
+Medium
+
+- Instructor can specify release dates.
+- Content becomes accessible only on the specified date.
+
+3
+
+Pending
+
+
+
+
+Buying Courses
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+BC-01
+
+As a trainer, I can set the prices for my course so that I can make filthy lucre.
+
+High
+
+- Trainer can define course prices.
+- Prices are correctly displayed on course pages.
+
+3
+
+Pending
+
+BC-02
+
+As a site visitor, I can pay for the courses in my cart with a credit card so that I can purchase them and participate in (watch) them.
+
+High
+
+- Secure credit card payment processing.
+- User receives purchase confirmation and access.
+
+8
+
+Pending
+
+BC-03
+
+As a site visitor, I can pay for the courses in my cart with PayPal so that I can purchase them and participate in (watch) them.
+
+Medium
+
+- PayPal integration is functional.
+- Payment confirmation grants course access.
+
+5
+
+Pending
+
+BC-07
+
+As a user, I can view the license terms before purchasing or subscribing so that I know what I’m getting.
+
+High
+
+- License terms are displayed before purchase.
+- Users must accept terms before completing purchase.
+
+3
+
+Pending
+
+BC-08
+
+As a participant, I can sign up for a monthly or annual subscription so that I can take all courses.
+
+High
+
+- Subscription plans are available.
+- Users can upgrade, downgrade, or cancel subscriptions.
+
+5
+
+Pending
+
+BC-09
+
+As a company, I can purchase multiple licenses so that I can manage course registrations for a group of people.
+
+High
+
+- Companies can buy bulk licenses.
+- Admins can assign licenses to employees.
+
+5
+
+Pending
+
+BC-10
+
+As a company, I manage a set of course registrations so that I can control which employees in my company have access to which courses.
+
+High
+
+- Company admin can manage access rights.
+- Employees receive course invitations.
+
+5
+
+Pending
+
+License Admin
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+LA-01
+
+As a buyer, I can easily apply a license I buy to myself so that I can instantly start viewing a course.
+
+High
+
+- Buyer applies license automatically.
+- Access is granted immediately.
+
+3
+
+Pending
+
+LA-02
+
+As a buyer, I can distribute out licenses to others in my company so that they can view a course I pay for.
+
+Medium
+
+- Buyer can assign licenses.
+- License status updates correctly.
+
+4
+
+Pending
+
+LA-03
+
+As a buyer, I can share a company-wide license with everyone in my company so that everyone in the company can view the course.
+
+Medium
+
+- Company-wide licenses grant access to all employees.
+- License admin dashboard available.
+
+5
+
+Pending
+
+
+
+
+
+
+Viewing Courses
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+VC-01
+
+As a participant, I want each course element marked as viewed after I view or complete it so that I can see which parts of a course I’ve completed.
+
+High
+
+- System marks viewed content.
+- Users can track progress.
+
+3
+
+Pending
+
+VC-02
+
+As a participant, I can re-watch any video so that I can make sure I understand it.
+
+Medium
+
+- Users can replay videos.
+- No playback restrictions.
+
+2
+
+Pending
+
+VC-03
+
+As a site visitor, I can view some videos for free so that I can decide if I want to buy the full course.
+
+Medium
+
+- Free preview videos are available.
+- Users can play previews without logging in.
+
+3
+
+Pending
+
+VC-04
+
+As a participant, I can set a mode on the videos so that one begins as the previous one finishes so that I can watch without having to touch my keyboard, mouse or screen.
+
+Medium
+
+- Auto-play feature is available.
+- Users can enable/disable auto-play.
+
+3
+
+Pending
+
+
+
+
+Course Completion
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+CP-01
+
+As a participant, I can earn a certificate of completion by finishing a course so that I have proof that I completed a course.
+
+High
+
+- Certificates are auto-generated.
+- Users can download or share certificates.
+
+5
+
+Pending
+
+CP-02
+
+As a participant, I can earn a badge showing that I completed a course so that I can display that badge on my own website.
+
+Medium
+
+- Badge is displayed upon completion.
+- Users can embed the badge externally.
+
+3
+
+Pending
+
+Miscellaneous
+
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+MS-01
+
+As a site visitor, I can read an FAQ so that all my questions are answered.
+
+Low
+
+- FAQ page is accessible.
+- Common questions and answers are listed.
+
+2
+
+Pending
+
+MS-02
+
+As a search engine, I can view a site map so that all pages are indexed.
+
+Low
+
+- Site map is dynamically generated.
+- Search engines can crawl the site.
+
+2
+
+Pending
+
+MS-03
+
+As a site visitor, I can sign up for a newsletter so that I get announcements about new courses and other information.
+
+Medium
+
+- Users can subscribe/unsubscribe.
+- Emails are sent on schedule.
+
+3
+
+Pending
+
+MS-07
+
+As a participant, I want the site to save my progress in a quiz or video in case I lose connection so that I don’t have to start over.
+
+High
+
+- Progress is saved every few minutes.
+- Users can resume quizzes or videos from where they left off.
+
+4
+
+Pending
+
+MS-08
+
+As a site visitor, I can access a help center with guides and FAQs so that I can quickly resolve common issues.
+
+Medium
+
+- Help center includes guides, FAQs, and contact support.
+- Users can search for help topics.
+
+3
+
+Pending
+
+
+
+
+Forms
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+FO-01
+
+As a participant, I can participate in a forum for a course so that I can discuss questions and topics with the instructor and other participants.
+
+Medium
+
+- Forums are enabled per course.
+- Participants and instructors can post and reply.
+
+4
+
+Pending
+
+
+
+
+
+Announcements
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+AN-01
+
+As an instructor, I can post announcements to a project 'home page' for a Scheduled Course so that I can tell participants about important things such as 'I’m delayed in posting chapter 7.'
+
+Medium
+
+- Instructors can create and edit announcements.
+- Announcements are displayed to participants.
+
+3
+
+Pending
+
+AN-02
+
+As a participant, I can read announcements from an instructor for a Scheduled Course so that I can keep up to date on news.
+
+Medium
+
+- Participants can view announcements.
+- Announcements are clearly visible on the course home page.
+
+2
+
+Pending
+
+
+
+
+Quizzes
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+QZ-01
+
+As an instructor, I can create quizzes so that participants can assess their learning.
+
+High
+
+- Instructor can add/edit quizzes.
+- Participants can take quizzes and get scores.
+
+5
+
+Pending
+
+QZ-02
+
+As a participant, I can take a quiz as part of a course so that I can get feedback on how well I learned material in the previous video(s).
+
+High
+
+- Quiz submission and auto-scoring work.
+- Feedback is displayed upon completion.
+
+5
+
+Pending
+
+QZ-05
+
+As a participant, I can navigate a quiz by submitting an answer or by pressing skip (forward) or back so that I can answer questions in a different order if I’d like.
+
+Medium
+
+- Users can navigate back and forth in quizzes.
+- Answer progress is saved.
+
+3
+
+Pending
+
+QZ-06
+
+As a participant, I can get answers via video rather than text so that I watch rather than read an answer.
+
+Medium
+
+- Video explanations are available for quiz answers.
+- Users can choose between text or video explanations.
+
+4
+
+Pending
+
+QZ-07
+
+As a participant, I want quiz responses stored in the database so that I can see how people are doing at various questions, perhaps so I can fix one that is worded poorly.
+
+Medium
+
+- Quiz responses are stored and retrievable.
+- Instructors can analyze response trends.
+
+3
+
+Pending
+
+QZ-08
+
+As a participant, I can navigate a quiz by submitting an answer or by pressing skip (forward) or back so that I can answer questions in a different order if I’d like.
+
+Medium
+
+- Users can skip or go back to previous questions.
+- Answered questions remain saved.
+
+3
+
+Pending
+
+
+
+
+Non-Functional Requirements
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+NFR-01
+
+As a visitor, I want to be able to view the site and videos in any reasonable browser so that I can use what I’m accustomed to.
+
+High
+
+- The site is compatible with major browsers.
+- Videos play correctly across devices.
+
+5
+
+Pending
+
+
+
+
+
+
+Affiliates
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+AF-01
+
+As a partner company, I would like to provide links to https://livex.tech and get paid for referring people to the site so that I can become part of the 1%.
+
+Medium
+
+- Affiliate tracking system is functional.
+- Payments are correctly processed.
+
+3
+
+Pending
+
+AF-02
+
+As a partner company, I can embed https://livex.tech/ (free ones only) on my site so that people can enjoy those videos on my site, , possibly giving me affiliate revenue but possibly just being about putting good content on my site.
+
+Medium
+
+- Embedded video support for affiliates.
+- Free content is available for sharing.
+
+3
+
+Pending
+
+
+
+
+
+
+Comments
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+CM-01
+
+As a participant, I can leave a comment about a course so that I can tell the world what I think of it.
+
+Medium
+
+- Participants can post comments.
+- Comments are moderated and displayed correctly.
+
+3
+
+Pending
+
+CM-02
+
+As an instructor, I can leave a comment about a sample video or the course so that I can respond to other comments.
+
+Medium
+
+- Instructors can reply to comments.
+- Comments are visible and properly threaded.
+
+3
+
+Pending
+
+
+
+
+
+
+
+	
+
+Course Evaluation
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+CE-01
+
+As a participant, I am shown an evaluation form after completing a course so that I can tell https://livex.tech/ what I think of their classes and their trainers.
+
+Medium
+
+- Evaluation form appears after course completion.
+- Users can submit feedback and ratings.
+
+3
+
+Pending
+
+CE-02
+
+As an instructor, I can view all feedback for a course when logged in so that I can see historical or aggregate data on my courses.
+
+Medium
+
+- Instructors can access feedback reports.
+- Data is aggregated for trend analysis.
+
+3
+
+Pending
+
+CE-03
+
+As an instructor, I can opt into receiving an email of every course evaluation as it is completed by a participant so that I get real-time feedback on my courses.
+
+Medium
+
+- Instructors receive email notifications of evaluations.
+- Emails contain full evaluation details.
+
+3
+
+Pending
+
+CE-04
+
+As an instructor, I can export all feedback for a course to a CSV file so that I can perform more in-depth analysis.
+
+Medium
+
+- Feedback export feature is available.
+- CSV file contains all evaluation data.
+
+3
+
+Pending
+
+
+
+
+Reporting
+
+ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+RP-01
+
+As a site owner, I receive a periodic email summarizing registrations for the day, week, and month to date so that I know how we’re doing.
+
+Medium
+
+- Summary email includes registration statistics.
+- Admin can configure email frequency.
+
+3
+
+Pending
+
+RP-02
+
+As a trainer, I receive a periodic sales summary at the frequencies I select so that I know how my courses are doing.
+
+Medium
+
+- Trainers receive periodic reports.
+- Report frequency is configurable.
+
+3
+
+Pending
+
+RP-06
+
+As a trainer, I can generate reports on participant progress so that I can monitor their learning outcomes.
+
+Medium
+
+- Reports include participant scores and completion status.
+- Trainers can filter reports by date or course.
+
+4
+
+Pending
+
+RP-03
+
+As a sys admin, I can run any report a trainer can run so that I can see overall information for any trainer on the site.
+
+Medium
+
+- Sys admins have report access.
+- Data is exportable and properly formatted.
+
+3
+
+Pending
+
+
+
+
+
+
+Figma UI/UX Designs
+
+Initial mockup screens will be inserted here. Each screen will be given an appropriate prototype id.e.g.
+
+Link of Figma Designs: 
+
+The original Figma designs can be see at the following link. You need to share your Figma link as well like this one.
+
+https://www.figma.com/community/file/1404410418143924515/coursehub-university-online-courses-school-education-figma-template
+
+
+
+Figure 4: Prototype - PID1- Sign Up Page UI
+
+
+
+Figure 5: Prototype - PID2- Sign In Page UI
+
+
+
+
+
+Figure 6: Prototype - PID3- Home Page UI  Partial
+
+
+
+
+
+Figure 7: Prototype - PID4- Course Listing Page
+
+
+
+
+
+
+Figure 8: Prototype - PID5- Course Details Page
+
+
+
+Figure 9: Prototype - PID6- Cart Page
+
+
+
+
+
+
+
+
+Figure 10: Prototype - PID7- Checkout Page
+
+
+
+Figure 11: Prototype - PID8- Instructor Registration Page
+
+
+
+
+Figure 12: Prototype - PID9- Instructor Listing Page
+
+
+
+
+
+
+
+Figure 13: Prototype - PID10- Instructor Detail Page
+
+
+
+Figure 14: Prototype - PID11- Student Registration Page
+
+
+
+
+
+
+Figure 15: Prototype - PID12- Pricing Page
+
+
+
+
+
+
+Figure 16: Prototype - PID13- Event Listing Page
+
+
+
+
+
+
+Figure 17: Prototype - PID14- Event Detail Page
+
+
+
+
+
+
+
+
+Figure 18: Prototype - PID14- 404 Page
+
+
+
+
+
+
+Figure 19: Prototype - PID14- FAQs Page
+
+
+
+Project Planning and Execution using Sprints
+
+Jira 
+
+Students would provide the link and credentials of their Jira project management credentials where they are managing their epics, stories and tasks
+
+Slack 
+
+Students would provide the link and credentials of their slack communication management where they would be managing their project communication.
+
+Github Repository 
+
+Students would provide the link and credentials of their Github repo where they would be maintaining their code Baselines.
+
+Sprint 1
+
+The goal of the first Sprint is to implement core functionalities including user authentication, dashboard, and profile management. 
+
+
+
+Sprint 1 Planning Meeting Minutes
+
+Project Name: LIVEX UMT
+
+Sprint Name: Sprint 1 – Initial Setup & Core Architecture
+
+Sprint Duration: April 25, 2024 – May 25, 2024 (4 weeks)
+
+Meeting Date: April 24, 2024
+
+Facilitated by: FYP Supervisor. Product Owner
+
+Attendees: Asif, Zainab, Ambreen, Suleiman
+
+
+
+Backlog Items with high priority, high risk and Architecturaly Significant:
+
+The following features are extracted from Product Backlog 
+
+
+Table 4: Selected Features of Product Backlog
+
+PB-ID
+
+User Story
+
+Priority
+
+Acceptance Criteria
+
+Story Points
+
+Status
+
+AM-01
+
+As an instructor, I can create a description of a course so that prospective participants can learn about it.
+
+High
+
+- Instructor can add/edit a course description.
+- Course description is saved and displayed correctly.
+
+3
+
+Pending
+
+AM-02
+
+As an instructor, I can sign, login and maintain a bio about myself so that it is used on any course listing for which I’m the instructor.
+
+Medium
+
+- Instructor can add/update bio.
+- Bio appears on all relevant course pages.
+
+2
+
+Pending
+
+AM-03
+
+As a site visitor, I can view a detailed page about each course so that I can learn all about it.
+
+High
+
+- Course page displays course title, description, instructor bio, and related courses.
+- Videos and syllabus are visible.
+
+3
+
+Pending
+
+AM-04
+
+As a site visitor, I can browse a catalog of all courses available so that I can pick the right one for me.
+
+High
+
+- Course catalog lists all available courses.
+- Filter and search functionality work correctly.
+
+5
+
+Pending
+
+AM-05
+
+As a site visitor, I can see a list of other related courses when viewing a course so that I can see other courses I might be interested in.
+
+Medium
+
+- Related courses are displayed based on category, instructor, or tags.
+
+3
+
+Pending
+
+AM-06
+
+As a student, I can Sign up, login into the system and see my registered courses (if any).
+
+Medium
+
+Courses are displayed
+
+3
+
+Pending
+
+
+
+
+
+Team Capacity:
+
+Following are the team members and their capacity
+
+
+
+Table 5: Team Capacity Sprint 1
+
+Member
+
+Days Available
+
+Hours/Day
+
+Total Hours
+
+Asif
+
+10
+
+6
+
+60
+
+Zainab
+
+10
+
+6
+
+60
+
+Ambreen
+
+9
+
+5
+
+45
+
+Suleiman
+
+8
+
+6
+
+48
+
+
+
+Action Items before Sprint Starts:
+
+Confirm GitHub repo setup – Zainab
+
+Share Figma design templates – Ambreen
+
+Create and Assign Jira tasks – Asif
+
+Share staging server credentials – Suleiman
+
+
+
+Sprint 1 Backlog
+
+The following tasks are extracted from Product Backlog features.
+
+
+
+Table 6: Sprint 1 Backlog
+
+SP-ID
+
+Task Name
+
+Related Product Backlog ID
+
+Assigned To
+
+Status
+
+Estimated Effort (Hours)
+
+Actual Effort (Hours)
+
+Comments
+
+S1-1
+
+Design login page
+
+AM-01
+
+Asif
+
+In Progress
+
+5
+
+1
+
+Started it and UI mockup complete, 
+
+S1-2
+
+Implement login API
+
+AM-01
+
+Zainab
+
+In Progress
+
+8
+
+3
+
+Testing API on Postman 
+
+S1-3
+
+Develop dashboard UI
+
+AM-02
+
+Suleiman
+
+In Progress
+
+10
+
+4
+
+Working on React component
+
+S1-4
+
+Integrate backend with dashboard
+
+AM-02
+
+Ambreen
+
+In Progress
+
+8
+
+4
+
+Half work done
+
+S1-5
+
+Develop profile update feature
+
+AM-03
+
+Zainab
+
+In Progress
+
+6
+
+1
+
+Just started on profile update feature
+
+S1-6
+
+Test profile management module
+
+AM-03
+
+Zainab
+
+Pending
+
+4
+
+1
+
+Designing UI, rest depends on update profile
+
+S1-7
+
+Create notification templates
+
+AM-04
+
+Asif
+
+In Progress
+
+5
+
+3
+
+7 out of 10 templates created
+
+S1-8
+
+Develop notification service
+
+AM-04
+
+Asif
+
+Pending
+
+7
+
+2
+
+Notification mechanism done but rest Depends upon profile management module
+
+S1-9
+
+Implement file upload feature
+
+AM-05
+
+Suleiman
+
+Pending
+
+8
+
+3
+
+Mechanism working but now working on making it secure
+
+S1-10
+
+Test file upload functionality
+
+AM-05
+
+Ambreen
+
+Pending
+
+5
+
+0
+
+Depends upon feature development completion
+
+S1-11
+
+Set up development environment
+
+N/A
+
+Asif
+
+Complete
+
+2
+
+2
+
+Set up is done
+
+S1-12
+
+Design DB schema for users/courses
+
+AM-06, AM-01
+
+Zainab
+
+In Progress
+
+8
+
+4
+
+Almost half tables created
+
+S1-13
+
+Create static landing page for login and sign up Figma to code Web  
+
+AM-06, AM-01
+
+Suleiman
+
+In Progress
+
+4
+
+3
+
+Page is almost done.
+
+S1-14
+
+Draft course creation Figma to code UI
+
+AM-01
+
+Ambreen
+
+In Progress
+
+4
+
+3
+
+Figma is almost completed
+
+S1-15
+
+Setup Git repo and CI pipeline
+
+AM-06
+
+Zainab
+
+In Progress
+
+8
+
+3
+
+Working on CI Pipeline is 
+
+
+
+
+
+
+Sprint 1 Design Class Diagram
+
+
+
+You need to make a class diagram of the features selected from the product backlog and task division mentioned in Sprint Backlog. Following is the sample class diagram of few user stories that were covered in s single sprint. [4]
+
+
+
+
+
+
+Figure 20: Class diagram of Sprint 1 features [4]
+
+
+
+
+Sprint 1 Sequence Diagram
+
+
+
+You need to give sequence diagrams of all the user stories involved in this sprint. Such as this following is is sample sequence diagram of Point of Sale system [2] user story of making Sales. Its partial diagram showing part of the functionality that is done in this sprint from process sale user story. Sample JAVA code is also given for your reference when we convert this design into code. You don’t need to give code here. Its mentioned here for your reference. [2]
+
+
+
+
+
+Figure 21: Sample Sprint 1 Sequence diagram POS 1 [2]
+
+
+
+public class Sale
+
+{
+
+private Payment payment;
+
+public void makePayment( Money cashTendered )
+
+{
+
+payment = new Payment( cashTendered );
+
+//…
+
+}
+
+// …
+
+}
+
+ 
+
+The Order object asks each Order Line object to calculate its own Price. The Order Line object itself further hands off the calculation to the Product project; note how we show the passing of a parameter. Similarly, to calculate the discount, the Order object invokes a method on the Customer object. Because it needs information from the Order to do this, the Customer makes a reentrant call (getBaseVal ue) to the Order to get the data.
+
+
+
+Figure 22: Sample Sprint 1 Sequence diagram POS [2]
+
+Sprint 1 Decision Table
+
+A software system is often governed by complex logic, with various combinations of conditions leading to different system behaviors. In such kind of user stories, it is advisable to create decision table in order to better understand possible combinations. Tesers are also advised to develop a separate test case for each possible combinations that check whether system is working fine in all those complex possible combinationss of input and outputs.
+
+A sample Figure below shows a decision table for the logic that governs whether the Chemical Tracking System should accept or reject each request for a new chemical. Four factors influence this decision:
+
+Whether the user who is creating the request is authorized to request chemicals
+
+Whether the chemical is available either in the chemical stockroom or from a vendor
+
+Whether the chemical is on the list of hazardous chemicals that require special training in safe handling
+
+Whether the user who is creating the request has been trained in handling this type of hazardous chemical.
+
+
+          
+
+Figure 23: Sample Sprint 1 Decision Table Chemical Tracking System
+
+
+
+Sprint 1 Extended Test Cases
+
+
+Separate Test cases should be made against each user story to test the functionality.
+
+
+
+Table 7: Sprint 1 Exteneded Test Case
+
+Test Case ID: TID1
+
+Test Designed By: Ambreen
+
+Epic Name and Backlog ID: Account Management AM-06
+
+Test Design Date: 17/05/2024
+
+Test Priority: High
+
+Test Executed by: - Zainab 
+
+Test Title: Verify Account Creation with Valid Data
+
+Test Executed Date: -21/05/2024
+
+Description:  Make sure a student is easily able to register an account with correct details.
+
+	 	
+
+Selenium Web Driver Test created: Yes/No
+
+Dependencies: None
+
+Step
+
+Test Step
+
+Test Data
+
+Expected Result
+
+Actual Result
+
+Status
+
+1
+
+Select the option to register account. 
+
+ 
+
+The location of the registration form is shown next.
+
+It should be noted that these fields shall be filled during testing.
+
+
+
+Pass
+
+2
+
+Enter valid data in the username field, i.e no space, tab, next line or special character allowed
+
+Username: Muhammad Usman
+
+
+
+
+
+
+
+
+The username is correct meaning that it is properly typed.
+
+Same as the expected result
+
+
+
+3
+
+Enter valid data in the Email field
+
+Email:  usman@gmail.com
+
+
+
+The valid email address field is being filled appropriately.
+
+Same as the expected result
+
+
+
+4
+
+Enter valid data in the password field, Valid password must be at least 12 characters with at least one capital, one small letter, one number, one special character
+
+Password: v$6xTOh1hEk&
+
+The password is typed accurately.
+
+Same as the expected result
+
+
+
+5
+
+Click the “Register” button.
+
+
+
+The registration information is accepted and processed by the system and a message is shown to the user. System displays the message that a link has been sent on the given email for verification.
+
+System displays the message that a link has been sent on the given email for verification.
+
+
+
+6
+
+Student checks inbox and click on the link provided to Activate the account.
+
+
+
+The student is redirected to the login page with message shown that account has been activated successfully.
+
+The student is redirected to the login page with message shown that account has been activated successfully.
+
+
+
+Post Condition:      
+
+A new account is created to be used by a new student.
+
+Using the registered e-mail address and password, the student can log in.
+
+
+
+
+
+
+
+Sprint 1 Review Meeting
+
+
+
+Sprint: Sprint 1 – Initial Setup & Core Architecture
+
+Review Date: May 25, 2024
+
+Duration: 1 hour
+
+Facilitator: Product Owner / FYP Supervisor
+
+Attendees: Asif, Zainab, Ambreen, Suleiman
+
+
+
+The following table shows the status of tasks assigned to team members in the Sprint planning meeting.
+
+
+
+Table 8: Status of Sprint 1 Backlog
+
+ID
+
+Task Name
+
+Related Product Backlog ID
+
+Owner
+
+Status
+
+Notes
+
+S1-1
+
+Design login page
+
+AM-01
+
+Asif
+
+Completed
+
+UI mockup complete, 
+
+S1-2
+
+Implement login API
+
+AM-01
+
+Zainab
+
+Completed
+
+Tested API on Postman 
+
+S1-3
+
+Develop dashboard UI
+
+AM-02
+
+Suleiman
+
+Completed
+
+React component completed
+
+S1-4
+
+Integrate backend with dashboard
+
+AM-02
+
+Ambreen
+
+Completed
+
+Integration done and tested
+
+S1-5
+
+Develop profile update feature
+
+AM-03
+
+Zainab
+
+Completed
+
+Profile update feature completed
+
+S1-6
+
+Test profile management module
+
+AM-03
+
+Zainab
+
+Completed
+
+Profile management completed
+
+S1-7
+
+Create notification templates
+
+AM-04
+
+Asif
+
+Completed
+
+All 10 templates created
+
+S1-8
+
+Develop notification service
+
+AM-04
+
+Asif
+
+Completed
+
+Notification mechanism done.
+
+S1-9
+
+Implement file upload feature
+
+AM-05
+
+Suleiman
+
+Completed
+
+Mechanism working and secure
+
+S1-10
+
+Test file upload functionality
+
+AM-05
+
+Ambreen
+
+Completed
+
+Tested and working fine.
+
+S1-11
+
+Set up development environment
+
+N/A
+
+Asif
+
+Completed
+
+Environment set up is done and working fine.
+
+S1-12
+
+Design DB schema for users/courses
+
+AM-06, AM-01
+
+Zainab
+
+Completed
+
+DB created with all needed tables.
+
+S1-13
+
+Create static landing page for login and sign up Figma to code Web  
+
+AM-06, AM-01
+
+Suleiman
+
+Completed
+
+Page created and delivered
+
+S1-14
+
+Draft course creation Figma to code UI
+
+AM-01
+
+Ambreen
+
+Completed
+
+Pages done and delivered
+
+S1-15
+
+Setup Git repo and CI pipeline
+
+AM-06
+
+Zainab
+
+Completed
+
+Repo is set up and working fine
+
+
+
+Demo Highlights:
+
+
+User Authentication: Live demo by Asif showing signup/login flow with JWT.
+
+CI/CD: Zainab walks through the automated pipeline on GitHub.
+
+Landing Page: Ambreen shows the mobile-responsive homepage mockup.
+
+
+
+Sprint Goal Achievement:
+
+
+All core objectives were completed on time, reviewed, and meet the definition of done.
+
+
+
+Feedback from Stakeholders:
+
+
+
+Feedback Source
+
+Comments
+
+Internal QA (Ambreen)
+
+Registration form could use better validation
+
+Product Owner (Team consensus)
+
+DB schema is clean and extendable
+
+Team Feedback
+
+CI pipeline documentation was helpful
+
+
+
+
+
+Metrics Overview:
+
+
+
+Metric
+
+Value
+
+Committed Story Points
+
+21
+
+Completed Story Points
+
+21
+
+Carryover Items
+
+0
+
+Bugs Reported / Resolved
+
+2 / 2
+
+
+
+
+
+What Went Well:
+
+
+Team collaboration and communication
+
+Early setup of CI/CD saved time later
+
+Daily standups were effective and focused
+
+
+
+What Could Be Improved:
+
+
+Need clearer guidelines for UI consistency
+
+More thorough test coverage for backend APIs
+
+
+
+
+
+
+
+Action Items / Next Steps:
+
+
+
+Action Item
+
+Owner
+
+Due Date
+
+Implement frontend form validation
+
+Ambreen
+
+May 30, 2024
+
+Add Swagger API docs to backend
+
+Asif
+
+May 30, 2024
+
+Create new UI component styles
+
+Zainab
+
+May 30, 2024
+
+
+
+Wrap-up
+
+Team to move into Sprint 2 focused on Course Management features.
+
+Next planning meeting scheduled for May 26, 2024.
+
+
+
+Sprint 1 Retrospective Meeting
+
+
+
+Sprint: Sprint 1 – Initial Setup & Core Architecture
+
+Retrospective Date: May 25, 2024
+
+Duration: 1 hour
+
+Facilitator: Product Owner /FYP Supervisor
+
+Attendees: Asif, Zainab, Ambreen, Suleiman
+
+
+
+Sprint Overview
+
+Goal: Establish the foundational architecture of the MOOC platform and implement user authentication module.
+
+Sprint Duration: April 25, 2024 – May 25, 2024 (4 weeks)
+
+
+
+What Went Well
+
+
+Successful implementation of authentication with JWT
+
+CI/CD pipeline setup early and was stable
+
+Team was responsive and collaborative during standups
+
+Clean database schema laid a strong foundation
+
+
+
+What Didn’t Go Well
+
+
+
+UI validation rules were inconsistent across components
+
+Test coverage was minimal due to time constraints
+
+Ambiguity in acceptance criteria for some stories
+
+
+
+Suggestions for Improvement
+
+
+
+Create a shared UI component style guide
+
+Include test case planning in story grooming sessions
+
+Improve story definitions and add clearer acceptance criteria
+
+Use pair programming for complex backend logic
+
+
+
+
+
+
+
+Action Items:
+
+
+
+Action Item
+
+Owner
+
+Due Date
+
+Draft UI component style guide
+
+Zainab
+
+May 30, 2024
+
+Add test planning checklist to grooming doc
+
+Ambreen
+
+May 30, 2024
+
+Refine story templates with clearer definitions
+
+Suleiman
+
+May 30, 2024
+
+
+
+
+
+Team Health Check:
+
+
+
+Team morale:  Good
+
+Communication: Effective
+
+Tools and resources: Sufficient but can improve in UI design guidance
+
+
+
+Wrap-up:
+
+Team expressed overall satisfaction with the sprint outcomes and is aligned on areas of improvement. Looking forward to Sprint 2.
+
+
+
+System Architecture 
+
+Describe the system architecture, or simply provide the architecture diagram according to C4 Model. 
+
+System context Diagram
+
+A System Context diagram is a good starting point for diagramming and documenting a software system, allowing you to step back and see the big picture. Draw a diagram showing your system as a box in the centre, surrounded by its users and the other systems that it interacts with.
+
+Detail isn’t important here as this is your zoomed out view showing a big picture of the system landscape. The focus should be on people (actors, roles, personas, etc) and software systems rather than technologies, protocols and other low-level details. It’s the sort of diagram that you could show to non-technical people.
+
+See more details [5] at https://c4model.com/
+
+
+
+
+
+Figure 24: System context Diagram [5]
+
+
+
+
+System Container Diagram
+
+
+
+Once you understand how your system fits in to the overall IT environment, a really useful next step is to zoom-in to the system boundary with a Container diagram. A “container” is something like a server-side web application, single-page application, desktop application, mobile app, database schema, file system, etc. Essentially, a container is a separately runnable/deployable unit (e.g. a separate process space) that executes code or stores data.
+
+
+
+The Container diagram shows the high-level shape of the software architecture and how responsibilities are distributed across it. It also shows the major technology choices and how the containers communicate with one another. It’s a simple, high-level technology focused diagram that is useful for software developers and support/operations staff alike.
+
+See more details [5] at https://c4model.com/
+
+
+
+Figure 25: System container Diagram [5]
+
+
+
+
+
+
+
+
+Component Diagram
+
+
+
+Next you can zoom in and decompose each container further to identify the major structural building blocks and their interactions.
+
+The Component diagram shows how a container is made up of a number of “components”, what each of those components are, their responsibilities and the technology/implementation details.
+
+See more details [5] at https://c4model.com/
+
+
+
+
+
+
+
+Figure 26: Component Diagram [5]
+
+
+
+
+
+
+
+
+Code Diagrams
+
+Finally, you can zoom in to each component to show how it is implemented as code; using UML class diagrams, entity relationship diagrams or similar.
+
+This is an optional level of detail and is often available on-demand from tooling such as IDEs. Ideally this diagram would be automatically generated using tooling (e.g. an IDE or UML modelling tool), and you should consider showing only those attributes and methods that allow you to tell the story that you want to tell. This level of detail is not recommended for anything but the most important or complex components.
+
+See more details [5] at https://c4model.com/
+
+
+
+
+
+Figure 27: Component Diagram [5]
+
+
+
+
+
+
+
+
+
+ERD
+
+We now present another example, a UNIVERSITY database, [3] to illustrate the ER modeling concepts. Suppose that a database is needed to keep track of student enrollments in classes and students’ final grades. After analyzing the miniworld rules and the users’ needs, the requirements for this database were determined to be as follows (for brevity, we show the chosen entity type names and attribute names for the conceptual schema in parentheses as we describe the requirements; relationship type names are only shown in the ER schema diagram):
+
+The university is organized into colleges (COLLEGE), and each college has a unique name (CName), a main office (COffice) and phone (CPhone), and a particular faculty member who is dean of the college. Each college administers a number of academic departments (DEPT). Each department has a unique name (DName), a unique code number (DCode), a main office (DOffice) and phone (DPhone), and a particular faculty member who chairs the department. We keep track of the start date (CStartDate) when that faculty member began chairing the department.
+
+A department offers a number of courses (COURSE), each of which has a unique course name (CoName), a unique code number (CCode), a course level (Level: this can be coded as 1 for freshman level, 2 for sophomore, 3 for junior, 4 for senior, 5 for MS level, and 6 for PhD level), a course credit hours (Credits), and a course description (CDesc). The database also keeps track of instructors (INSTRUCTOR); and each instructor has a unique identifier (Id), name (IName), office (IOffice), phone (IPhone), and rank (Rank);
+
+in addition, each instructor works for one primary academic department.
+
+The database will keep student data (STUDENT) and stores each student’s name (SName, composed of first name (FName), middle name (MName), last name (LName)), student id (Sid, unique for every student), address (Addr), phone (Phone), major code (Major), and date of birth (DoB). A student is assigned to one primary academic department. It is required to keep track of the student’s grades in each section the student has completed.
+
+Courses are offered as sections (SECTION). Each section is related to a single course and a single instructor and has a unique section identifier (SecId). A section also has a section number (SecNo: this is coded as 1, 2, 3, . . . for multiple sections offered during the same semester/year), semester (Sem), year (Year), classroom (CRoom: this is coded as a combination of building code (Bldg) and room number (RoomNo) within the building), and days/times (DaysTime: for example, ‘MWF 9am-9.50am’ or ‘TR 3.30pm-5.20pm’— restricted to only allowed days/time values). (Note: The database will keep track of all the sections offered for the past several years, in addition to the current offerings. The SecId is unique for all sections, not just the sections for a particular semester.) The database keeps track of the students in each section, and the grade is recorded when available (this is a many-to-many relationship between students and sections). A section must have at least five students.
+
+
+
+Figure 28: ER Diagram for University Scenario [3]
+
+The ER diagram for these requirements is shown in Figure 28 using the min-max ER diagrammatic notation. Notice that for the SECTION entity type, we only showed SecID as an underlined key, but because of the miniworld constraints, several other combinations of values have to be unique for each section entity. For example, each of the following combinations must be unique based on the typical miniworld constraints:
+
+(SecNo, Sem, Year, CCode (of the COURSE related to the SECTION)): This specifies that the section numbers of a particular course must be different during each particular semester and year.
+
+(Sem, Year, CRoom, DaysTime): This specifies that in a particular semester and year, a classroom cannot be used by two different sections at the same days/time.
+
+(Sem, Year, DaysTime, Id (of the INSTRUCTOR teaching the SECTION)): This specifies that in a particular semester and year, an instructor cannot teach two sections at the same days/time. Note that this rule will not apply if an instructor is allowed to teach two combined sections together in the particular university
+
+Data Dictionary
+
+A data dictionary [1] is a collection of detailed information about the data entities used in an application. Collecting the information about composition, data types, allowed values, and the like into a shared resource identifies the data validation criteria, helps developers write programs correctly, and minimizes integration problems. The data dictionary complements the project glossary, which defines application domain or business terms, abbreviations, and acronyms. We recommend keeping the data dictionary and the glossary separate. This information feeds into design in the form of database schemas, tables, and attributes, which ultimately lead to variable names in programs. The time you invest in creating a data dictionary will be more than repaid by avoiding the mistakes that can result when project participants have different understandings of the data.
+
+Following is the sample data dictionary of chemical tracking system.[1]
+
+
+
+
+
+Figure 29: Data Dictionary of Chemical Tracking System [1]
+
+
+
+Implementation details
+
+Development Setup
+
+List your tools and technologies and their role in development.
+
+Deployment setup
+
+How and where was your software deployed? Did you face any problems, how did you overcome these problems.
+
+Algorithms
+
+Entire code of software is not required. Just highlight your important (user defined/ improved) algorithms.
+
+Constraints
+
+Assumptions
+
+Things we assume will be true. 
+
+e.g.:
+
+We will receive all necessary technical support from the engineers at cMeRun, Select and Mellon Bank to help design the interfaces between their systems and enGyro.  
+
+All database maintenance will be handled by the client.  
+
+There will be no real-time interfacing with any accounting systems.
+
+System constraints
+
+ A constraint specifies how the system must operate or how it must be built
+
+Restrictions
+
+Constraints applied on the system by the client
+
+Limitations
+
+Services your software is unable to provide
+
+Project Monitoring, control and traceability 
+
+
+
+Traceability Matrix
+
+Requirements vs Prototype (PB-ID vs PID)
+
+PB-ID vs
+PID
+
+PID1
+
+PID2
+
+PID3
+
+PID4
+
+PID5
+
+PID6
+
+PID7
+
+PID8
+
+PID9
+
+PID10
+
+PID11
+
+PID12
+
+PID13
+
+PID14
+
+PID15
+
+PID16
+
+PID17
+
+PID18
+
+PID19
+
+PID20
+
+CC01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC02
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC03
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC04
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC05
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC06
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC07
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC08
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC09
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-02
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-03
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-04
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-05
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-06
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-07
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-08
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-09
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LA-01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LA-02
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Requirements vs Test Cases (PB-ID vs TID)
+
+
+
+PB-ID vs
+TID
+
+TID1
+
+TID2
+
+TID3
+
+TID4
+
+TID5
+
+TID6
+
+TID7
+
+TID8
+
+TID9
+
+TID10
+
+TID11
+
+TID12
+
+TID13
+
+TID14
+
+TID15
+
+TID16
+
+TID17
+
+TID18
+
+TID19
+
+TID20
+
+CC01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC02
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC03
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC04
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC05
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC06
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC07
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC08
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CC09
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-02
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-03
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-04
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-05
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-06
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-07
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-08
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-09
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BC-10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LA-01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LA-02
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Results/Output/Statistics
+
+%completion
+
+Use the matrix & values from 7.3.1 to show that all requirements are being fulfilled.
+
+%accuracy
+
+Use the matrix & values from 7.3.3 to show that all requirements have been implemented correctly.
+
+
+
+%correctness
+
+Use the matrix & values from 7.3.4 to show that all requirements have been tested to be conforming to requirements.
+
+
+
+Conclusion
+
+Future work
+
+Bibliography
+
+Use IEEE or ACM format for citations
+
+Books
+
+Karl E Wiegers and Joy Beatty. 2013. Software Requirements 3. Microsoft Press, USA.
+
+Craig Larman. 2001. Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and the Unified Process (2nd. ed.). Prentice Hall PTR, USA.
+
+Ramez Elmasri and Shamkant B. Navathe. 2015. Fundamentals of Database Systems (7th. ed.). Pearson.
+
+Martin Fowler. 2003. UML Distilled: A Brief Guide to the Standard Object Modeling Language (3rd. ed.). Addison-Wesley Longman Publishing Co., Inc., USA.
+
+Journals
+
+Articles
+
+Research papers
+
+Other References
+
+      5	https://c4model.com/
+
+Appendix
+
+Glossary of terms
+
+Pre-requisites
+
+Must use contents of development/ deployment setup & external system dependencies
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+		<Project Name>	Functional Specifications, Version <>	Page 27 of 82
+
+
+
+
+
+		<Project Name>	Functional Specifications, Version <1.0>
