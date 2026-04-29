@@ -4,7 +4,7 @@ This directory contains the trained models used by the Sign Language to Speech S
 
 ## Required Models
 
-### 1. YOLOv8 Sign Language Model
+### 1. YOLO12 Sign Language Model
 - **File**: `yolov8_sign.pt`
 - **Purpose**: Detects sign language gestures in video frames
 - **Format**: PyTorch model file (.pt)
@@ -40,7 +40,7 @@ mv yolov8n.pt yolov8_sign.pt
 from ultralytics import YOLO
 
 # Load a pre-trained model
-model = YOLO('yolov8n.pt')  # nano, small, medium, large, xlarge
+model = YOLO('yolo12n.pt')  # nano, small, medium, large, xlarge
 
 # Train the model
 results = model.train(
@@ -52,7 +52,7 @@ results = model.train(
 )
 
 # Save the trained model
-model.save('yolov8_sign.pt')
+model.save('yolo12_sign.pt')
 ```
 
 3. **Dataset YAML Example** (`../data/sign_dataset/dataset.yaml`):
@@ -91,17 +91,7 @@ If DeepSORT is not available, the system will fall back to a simple tracker that
 
 ## Model Performance Guidelines
 
-### YOLOv8 Variants
-- **YOLOv8n (Nano)**: Fastest, lowest accuracy (~6MB)
-- **YOLOv8s (Small)**: Balanced speed/accuracy (~22MB)
-- **YOLOv8m (Medium)**: Better accuracy, slower (~52MB)
-- **YOLOv8l (Large)**: High accuracy, slow (~87MB)
-- **YOLOv8x (XLarge)**: Highest accuracy, slowest (~136MB)
-
-### Recommended Settings
-- **Real-time applications**: YOLOv8n or YOLOv8s
-- **High accuracy needs**: YOLOv8m or YOLOv8l
-- **Research/offline**: YOLOv8x
+#
 
 ## Troubleshooting
 
@@ -110,7 +100,7 @@ If DeepSORT is not available, the system will fall back to a simple tracker that
 # Test model loading
 from ultralytics import YOLO
 try:
-    model = YOLO('models/yolov8_sign.pt')
+    model = YOLO('models/yolo12_sign.pt')
     print("Model loaded successfully")
     print(f"Model classes: {model.names}")
 except Exception as e:
@@ -129,7 +119,7 @@ except Exception as e:
 ```python
 from ultralytics import YOLO
 
-model = YOLO('yolov8_sign.pt')
+model = YOLO('yolo12_sign.pt')
 
 # Export to ONNX for faster inference
 model.export(format='onnx')
