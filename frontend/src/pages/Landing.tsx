@@ -1,11 +1,17 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 export default function Landing() {
   const [mockSentence, setMockSentence] = useState('Awaiting sign input...');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [simulatedSign, setSimulatedSign] = useState<string>('HELLO');
   const [simulatedSentence, setSimulatedSentence] = useState('Hello.');
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Simulate live translation preview on the landing page for visual engagement
   useEffect(() => {
@@ -22,10 +28,92 @@ export default function Landing() {
     return () => clearInterval(interval);
   }, []);
 
+  // GSAP Kinetic scrolling, Parallax zooming, and Staggered reveals
+  useGSAP(() => {
+    // 1. Background image parallax scale zoom
+    gsap.to(".parallax-bg", {
+      scale: 1.25,
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+      }
+    });
+
+    // 2. Features Card Stagger Slide-up
+    gsap.from(".feature-card", {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".features-trigger",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      }
+    });
+
+    // 3. Statistics Stagger slide-up
+    gsap.from(".stat-card", {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".stats-trigger",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
+    });
+
+    // Tween the actual number values in statistics cards dynamically on scroll
+    const counters = document.querySelectorAll(".stat-counter");
+    counters.forEach((c) => {
+      const targetVal = parseFloat(c.getAttribute("data-target") || "0");
+      const isPercent = c.getAttribute("data-suffix") === "%";
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: targetVal,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: c,
+          start: "top 90%",
+        },
+        onUpdate: () => {
+          c.textContent = isPercent ? `${Math.round(obj.val)}%` : `${obj.val}`;
+        }
+      });
+    });
+
+    // 4. Vocabulary grid categories staggered pop-in
+    gsap.from(".vocab-category-card", {
+      scale: 0.9,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.2,
+      ease: "back.out(1.2)",
+      scrollTrigger: {
+        trigger: ".vocab-trigger",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      }
+    });
+  }, { scope: containerRef });
+
   return (
-    <div className="min-h-screen bg-[url('/male_signing.jpg')] bg-fixed bg-cover bg-center text-on-surface antialiased overflow-x-hidden selection:bg-primary/30 font-sans relative">
+    <div ref={containerRef} className="min-h-screen text-on-surface antialiased overflow-x-hidden selection:bg-primary/30 font-sans relative bg-black">
+      {/* Zoomable Parallax Background Layer */}
+      <div 
+        className="parallax-bg absolute inset-0 bg-cover bg-center z-0 pointer-events-none opacity-40" 
+        style={{ backgroundImage: "url('/male_signing.jpg')" }} 
+      />
       {/* Dark frosted overlay to make text pop while keeping the background image beautifully visible */}
-      <div className="absolute inset-0 bg-[#050505]/90 backdrop-blur-[5px] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[#050505]/85 backdrop-blur-[4px] pointer-events-none z-0" />
       
       <main className="pt-2 pb-20 min-h-screen relative z-10">
         {/* Hero Section */}
@@ -242,11 +330,11 @@ export default function Landing() {
           </div>
         </section>
         {/* Features Grid */}
-        <section className="px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mb-20 relative z-10">
+        <section className="features-trigger px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mb-20 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             {/* Spatial Logic */}
-            <div className="apple-glass-dark p-8 rounded-[2rem] group hover:scale-[1.02] transition-all duration-500 text-left">
+            <div className="feature-card apple-glass-dark p-8 rounded-[2rem] group hover:scale-[1.02] transition-all duration-500 text-left">
               <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all">
                 <span className="material-symbols-outlined text-primary text-3xl">gesture</span>
               </div>
@@ -255,7 +343,7 @@ export default function Landing() {
             </div>
 
             {/* Edge Privacy */}
-            <div className="relative overflow-hidden p-8 rounded-[2rem] bg-primary text-on-primary-fixed group hover:scale-[1.02] transition-all duration-500 shadow-[0_30px_60px_rgba(184,200,223,0.1)] text-left">
+            <div className="feature-card relative overflow-hidden p-8 rounded-[2rem] bg-primary text-on-primary-fixed group hover:scale-[1.02] transition-all duration-500 shadow-[0_30px_60px_rgba(184,200,223,0.1)] text-left">
               <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none" />
               <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center mb-8 border border-white/30 relative z-10">
                 <span className="material-symbols-outlined text-on-primary-fixed text-3xl">security</span>
@@ -265,7 +353,7 @@ export default function Landing() {
             </div>
 
             {/* Natural Syntax */}
-            <div className="apple-glass-dark p-8 rounded-[2rem] group hover:scale-[1.02] transition-all duration-500 text-left">
+            <div className="feature-card apple-glass-dark p-8 rounded-[2rem] group hover:scale-[1.02] transition-all duration-500 text-left">
               <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all">
                 <span className="material-symbols-outlined text-primary text-3xl">text_fields</span>
               </div>
@@ -277,7 +365,7 @@ export default function Landing() {
         </section>
 
         {/* Real-World Impact Statistics Section */}
-        <section className="px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mb-20 relative z-10 border-t border-white/5 pt-20">
+        <section className="stats-trigger px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mb-20 relative z-10 border-t border-white/5 pt-20">
           <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-12 text-center md:text-left mx-auto md:mx-0">
             <div className="max-w-xl">
               
@@ -312,9 +400,9 @@ export default function Landing() {
                 color: 'text-purple-400'
               }
             ].map((item, idx) => (
-              <div key={idx} className={`apple-glass p-8 rounded-[2rem] border flex flex-col justify-between group transition-all duration-300 ${item.glow}`}>
+              <div key={idx} className={`stat-card apple-glass p-8 rounded-[2rem] border flex flex-col justify-between group transition-all duration-300 ${item.glow}`}>
                 <div className={`font-syne text-5xl font-extrabold mb-6 group-hover:scale-105 transition-transform duration-300 ${item.color}`}>
-                  {item.stat}
+                  <span className="stat-counter" data-target={item.stat.replace("%", "")} data-suffix={item.stat.includes("%") ? "%" : ""}>{item.stat}</span>
                 </div>
                 <div>
                   <h4 className="font-syne font-bold text-sm text-on-surface mb-2">{item.label}</h4>
@@ -326,7 +414,7 @@ export default function Landing() {
         </section>
 
         {/* Supported Gesture Vocabulary Showcase */}
-        <section className="px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mb-20 relative z-10 border-t border-white/5 pt-20 text-left">
+        <section className="vocab-trigger px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mb-20 relative z-10 border-t border-white/5 pt-20 text-left">
           <div className="max-w-xl mb-12 text-center md:text-left mx-auto md:mx-0">
             
             <h2 className="text-3xl md:text-4xl font-syne font-bold leading-tight">Supported Sign Vocabulary</h2>
@@ -339,6 +427,7 @@ export default function Landing() {
             {[
               { 
                 category: 'Basic Conversation', 
+                cardClass: 'vocab-category-card', 
                 color: 'from-emerald-500/20 to-emerald-500/5 border-emerald-500/20 text-emerald-400 hover:shadow-[0_0_15px_rgba(16,185,129,0.1)]',
                 items: ['school', 'sorry', 'help', 'easy', 'work', 'age', 'effort', 'respect'] 
               },
