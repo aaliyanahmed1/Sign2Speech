@@ -1,15 +1,24 @@
-FROM node:18-alpine
-
+# ---- Build stage ----
+FROM node:20-alpine AS build
 WORKDIR /app
-
-# Copy package and install
 COPY package.json package-lock.json ./
-RUN npm install
-
-# Copy source
+RUN npm ci
 COPY . .
+RUN npm run build
 
-EXPOSE 5173
+# ---- Production stage ----
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Start dev server
-CMD ["npm", "run", "dev", "--", "--host"]
+# SPA fallback
+RUN printf 'server { \
+  listen 80; \
+  root /usr/share/nginx/html; \
+  index index.html; \
+  location / { try_files $uri $uri/ /index.html; } \
+  location /api/ { proxy_pass http://backend:8000; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection "upgrade"; proxy_set_header Host $host; } \
+}' > /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD wget -qO- http://localhost/ || exit 1

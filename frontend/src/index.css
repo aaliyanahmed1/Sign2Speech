@@ -1,49 +1,297 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lato:wght@300;400;700&family=Syne:wght@400;600;700;800&display=swap');
-
 @import "tailwindcss";
 
+@theme {
+  --color-on-tertiary: #002e69;
+  --color-primary: #b8c8df;
+  --color-tertiary: #adc6ff;
+  --color-surface-container-lowest: #080809;
+  --color-on-primary: #223144;
+  --color-secondary-container: #1c1c1e;
+  --color-tertiary-fixed: #d8e2ff;
+  --color-secondary-fixed: #e4e2e4;
+  --color-surface-container-high: #1c1c1e;
+  --color-on-primary-container: #6d7c91;
+  --color-surface-container-low: #0f0f10;
+  --color-inverse-on-surface: #2f3131;
+  --color-on-surface: #f5f5f7;
+  --color-surface-tint: #b8c8df;
+  --color-inverse-surface: #e2e2e2;
+  --color-tertiary-container: #000c25;
+  --color-outline-variant: #4a4a4c;
+  --color-primary-container: #000e1f;
+  --color-error: #ffb4ab;
+  --color-on-error-container: #ffdad6;
+  --color-on-surface-variant: #c5c7d0;
+  --color-surface-bright: #1c1c1e;
+  --color-primary-fixed: #d4e4fc;
+  --color-on-secondary: #303032;
+  --color-surface-container: #121214;
+  --color-background: #050505;
+  --color-on-tertiary-fixed: #001a41;
+  --color-surface-variant: #1c1c1e;
+  --color-on-background: #f5f5f7;
+  --color-on-tertiary-container: #0076f7;
+  --color-on-primary-fixed: #0c1c2e;
+  --color-on-secondary-fixed: #1b1b1d;
+  --color-outline: #8e9197;
+  --color-surface-container-highest: #333535;
+  --color-surface: #0a0a0a;
+  --color-on-primary-fixed-variant: #39485b;
+  --color-error-container: #93000a;
+  --color-inverse-primary: #506074;
+  --color-on-error: #690005;
+  --color-primary-fixed-dim: #b8c8df;
+  --color-on-secondary-container: #b6b4b7;
+  --color-on-tertiary-fixed-variant: #004493;
+  --color-on-secondary-fixed-variant: #474649;
+  --color-secondary: #c8c6c8;
+  --color-surface-dim: #0a0a0a;
+  --color-secondary-fixed-dim: #c8c6c8;
+  --color-tertiary-fixed-dim: #adc6ff;
+
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --spacing-gutter: 24px;
+  --spacing-base: 8px;
+  --spacing-margin-mobile: 16px;
+  --spacing-touch-target-min: 48px;
+  --spacing-margin-desktop: 64px;
+}
+
+/* Custom Text and Font Utility Classes */
+.font-body-lg {
+  font-family: "Inter", sans-serif;
+}
+.text-body-lg {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}
+
+.font-display-lg {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.text-display-lg {
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.font-headline-md {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.text-headline-md {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.font-label-caps {
+  font-family: "JetBrains Mono", monospace;
+}
+.text-label-caps {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.font-display-lg-mobile {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.text-display-lg-mobile {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.font-body-md {
+  font-family: "Inter", sans-serif;
+}
+.text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+/* Base resets */
 html,
 body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #0A0A0F;
-  color: #ECECEC;
-  font-family: 'Lato', sans-serif;
+  min-height: max(844px, 100dvh);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  font-family: "Inter", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
   overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Syne', sans-serif;
+/* Custom Scrollbar for list scroll areas */
+.history-list::-webkit-scrollbar {
+  display: none;
+}
+.history-list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-code,
-.font-mono {
-  font-family: 'IBM Plex Mono', monospace;
+/* Aesthetic Components */
+.skeleton-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #89ceff;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0 0 15px #89ceff;
 }
 
-/* Subtle grid line background */
-body {
-  background-image: linear-gradient(rgba(108, 63, 200, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(108, 63, 200, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+.skeleton-line {
+  background: linear-gradient(90deg, #89ceff, #c0c1ff);
+  height: 2px;
+  position: absolute;
+  transform-origin: left center;
+  opacity: 0.6;
 }
 
-/* Glassmorphism utility classes */
-.glass-panel {
-  background: rgba(10, 10, 15, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+.pulse-secondary {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.glowing-box {
-  box-shadow: 0 0 15px rgba(0, 229, 204, 0.3);
-  border: 1px solid #00E5CC;
+@keyframes pulse-ring {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.7;
+  }
+}
+
+.viewfinder-corner {
+  width: 32px;
+  height: 32px;
+  border-color: rgba(137, 206, 255, 0.5);
+  position: absolute;
+}
+
+.waveform-bar {
+  transition: height 0.1s ease-in-out;
+}
+
+.touch-ripple:active {
+  transform: scale(0.96);
+  transition: transform 0.1s;
+}
+
+.status-badge {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.active-tap:active {
+  transform: scale(0.96);
+  transition: transform 0.1s ease;
+}
+
+.safe-pb {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 100px);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Glassmorphism Styling Utility Classes */
+.glass-card {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03) !important;
+}
+
+.glass-card-dark {
+  background: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Mobile & Touch Utility Alignment */
+.px-margin-mobile {
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
+}
+
+.h-touch-target-min {
+  height: 56px !important;
+}
+
+/* Premium Apple Design System Utilities */
+.mesh-gradient {
+  background: radial-gradient(at 0% 0%, hsla(210,100%,8%,1) 0, transparent 60%),
+              radial-gradient(at 50% 0%, hsla(220,100%,4%,1) 0, transparent 60%),
+              radial-gradient(at 100% 0%, hsla(200,100%,6%,1) 0, transparent 60%),
+              #080a0a !important;
+}
+
+.apple-glass {
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(32px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 0.5px 1px rgba(255, 255, 255, 0.15) !important;
+}
+
+.apple-glass-dark {
+  background: rgba(20, 20, 20, 0.4) !important;
+  backdrop-filter: blur(40px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.animate-float {
+  animation: float-anim 8s ease-in-out infinite;
+}
+
+@keyframes float-anim {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
 }

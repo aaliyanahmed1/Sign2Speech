@@ -1,46 +1,317 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useAppStore } from './store';
+import { useToast } from './components/Toast';
 import Landing from './pages/Landing';
-import LiveDetection from './pages/LiveDetection';
 import UploadAnalyze from './pages/UploadAnalyze';
-import Analytics from './pages/Analytics';
 import About from './pages/About';
+import NotFound from './pages/NotFound';
+import Login from './pages/Login';
+import SignSpeakTranslate from './pages/SignSpeakTranslate';
+import SignSpeakResult from './pages/SignSpeakResult';
+import SignSpeakHistory from './pages/SignSpeakHistory';
+import SignSpeakSettings from './pages/SignSpeakSettings';
+import Developer from './pages/Developer';
 
-function App() {
+const NAV_LINKS = [
+  { to: '/live', label: 'Live Demo' },
+  { to: '/upload', label: 'Upload' },
+  { to: '/about', label: 'About' },
+] as const;
+
+
+function NavBar() {
+  const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const isSignSpeak = location.pathname.startsWith('/signspeak') || location.pathname.startsWith('/live');
+  const { addToast } = useToast();
+  const { isAuthenticated, user, logoutUser } = useAppStore();
+
+  const isActive = (path: string) => location.pathname === path;
+
+  const navClass = isSignSpeak ? "hidden md:block" : "block";
+  const visibleLinks = isAuthenticated ? NAV_LINKS : [];
+
   return (
-    <Router>
-      <div className="min-h-screen bg-[#0A0A0F] text-gray-200 font-sans selection:bg-[#00E5CC] selection:text-black">
-        <nav className="border-b border-gray-800 bg-[#0A0A0F]/80 backdrop-blur-md sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              <div className="flex items-center">
-                <Link to="/" className="text-[#00E5CC] font-bold text-xl tracking-wider uppercase font-syne">
-                  Sign2Speech
+    <nav className={`border-b border-outline-variant bg-background/80 backdrop-blur-md sticky top-0 z-50 ${navClass}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <Link to="/" className="flex items-center gap-2 text-primary font-bold text-xl tracking-wider uppercase font-syne no-underline">
+            <img src="/logo.jpg" alt="Sign2Speech Logo" className="w-8 h-8 rounded-lg object-cover border border-outline-variant" />
+            <span>Sign2Speech</span>
+          </Link>
+
+          <div className="hidden md:flex items-center space-x-2">
+            {visibleLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive(link.to)
+                    ? 'text-primary bg-primary-container'
+                    : 'text-on-surface-variant hover:text-primary hover:bg-surface-variant'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            {isAuthenticated ? (
+              <div className="flex items-center gap-3 border-l border-outline-variant pl-4 ml-2">
+                <span className="text-xs text-on-surface-variant font-mono">
+                  {user?.name || 'User'}
+                </span>
+                <button
+                  onClick={() => {
+                    logoutUser();
+                    addToast('Logged out successfully', 'info');
+                  }}
+                  className="px-3 py-1.5 border border-red-500/30 hover:border-red-500 bg-transparent text-red-600 text-xs font-semibold rounded-lg active:scale-95 transition-all cursor-pointer"
+                >
+                  Log Out
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="px-5 py-2 ml-4 border border-white/10 hover:border-white/20 text-on-surface font-bold text-xs rounded-full hover:bg-white/5 active:scale-95 transition-all bg-transparent no-underline"
+              >
+                Sign In
+              </Link>
+            )}
+          </div>
+
+          {/* Mobile toggle */}
+          <button
+            className="md:hidden p-2 text-on-surface-variant hover:text-on-surface transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden overflow-hidden border-t border-outline-variant bg-background/95 backdrop-blur-md"
+          >
+            <div className="px-4 py-3 space-y-1">
+              {visibleLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  onClick={() => setMobileOpen(false)}
+                  className={`block px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                    isActive(link.to)
+                      ? 'text-primary bg-primary-container'
+                      : 'text-on-surface-variant hover:text-primary hover:bg-surface-variant'
+                  }`}
+                >
+                  {link.label}
                 </Link>
-                <div className="hidden md:block ml-10">
-                  <div className="flex items-baseline space-x-4">
-                    <Link to="/live" className="hover:text-[#00E5CC] px-3 py-2 rounded-md transition-colors">Live Demo</Link>
-                    <Link to="/upload" className="hover:text-[#00E5CC] px-3 py-2 rounded-md transition-colors">Upload</Link>
-                    <Link to="/analytics" className="hover:text-[#00E5CC] px-3 py-2 rounded-md transition-colors">Analytics</Link>
-                    <Link to="/about" className="hover:text-[#00E5CC] px-3 py-2 rounded-md transition-colors">About</Link>
+              ))}
+
+              <div className="border-t border-outline-variant pt-3 mt-3">
+                {isAuthenticated ? (
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-on-surface-variant font-mono">
+                      {user?.name || 'User'}
+                    </span>
+                    <button
+                      onClick={() => {
+                        setMobileOpen(false);
+                        logoutUser();
+                        addToast('Logged out successfully', 'info');
+                      }}
+                      className="px-3 py-1.5 border border-red-500/30 hover:border-red-500 bg-transparent text-red-600 text-xs font-semibold rounded-lg active:scale-95 transition-all cursor-pointer"
+                    >
+                      Log Out
+                    </button>
                   </div>
-                </div>
+                ) : (
+                  <Link
+                    to="/login"
+                    onClick={() => setMobileOpen(false)}
+                    className="block w-full py-2.5 text-center border border-white/10 hover:border-white/20 text-on-surface font-bold text-xs rounded-full hover:bg-white/5 active:scale-95 transition-all bg-transparent no-underline animate-fade-in"
+                  >
+                    Sign In
+                  </Link>
+                )}
               </div>
             </div>
-          </div>
-        </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+}
 
-        <main className="min-h-[calc(100vh-64px)]">
+function SignSpeakHeader() {
+  const { user } = useAppStore();
+  return (
+    <header className="bg-surface/40 backdrop-blur-3xl fixed top-0 w-full z-50 border-b border-white/5">
+      <div className="flex justify-between items-center px-margin-mobile h-16 w-full max-w-7xl mx-auto">
+        <div className="flex items-center gap-4">
+          <Link to="/" className="text-on-surface/85 flex items-center justify-center cursor-pointer active:scale-90 duration-200">
+            <span className="material-symbols-outlined">menu</span>
+          </Link>
+          <Link to="/" className="font-syne font-extrabold text-xl tracking-tight text-on-surface no-underline">
+            Sign2Speech
+          </Link>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-xs text-on-surface-variant font-mono hidden sm:inline">{user?.name || 'Demo User'}</span>
+          <div className="w-8 h-8 rounded-full overflow-hidden border border-white/10 cursor-pointer active:scale-90 duration-200">
+            <img alt="Profile" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/a/default-user=s120-c"/>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function SignSpeakBottomNav() {
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const prefix = currentPath.startsWith('/live') ? '/live' : '/signspeak';
+  const isTranslateActive = currentPath === prefix || currentPath === `${prefix}/result`;
+  const isHistoryActive = currentPath === `${prefix}/history`;
+  const isSettingsActive = currentPath === `${prefix}/settings`;
+
+  return (
+    <div className="fixed bottom-8 left-0 right-0 flex justify-center z-50">
+      <nav className="apple-glass-dark w-[90%] max-w-md rounded-full px-6 py-3 flex justify-around items-center shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/10">
+        <Link 
+          to={prefix} 
+          className={`flex items-center justify-center p-3 rounded-full transition-all duration-300 active:scale-90 ${
+            isTranslateActive ? 'bg-white text-black shadow-lg' : 'text-on-surface/65 hover:text-on-surface hover:bg-white/5'
+          }`}
+          title="Live Translation"
+        >
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: isTranslateActive ? "'FILL' 1" : "'FILL' 0" }}>translate</span>
+        </Link>
+        <Link 
+          to={`${prefix}/history`} 
+          className={`flex items-center justify-center p-3 rounded-full transition-all duration-300 active:scale-90 ${
+            isHistoryActive ? 'bg-white text-black shadow-lg' : 'text-on-surface/65 hover:text-on-surface hover:bg-white/5'
+          }`}
+          title="History Log"
+        >
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: isHistoryActive ? "'FILL' 1" : "'FILL' 0" }}>history</span>
+        </Link>
+        <Link 
+          to={`${prefix}/settings`} 
+          className={`flex items-center justify-center p-3 rounded-full transition-all duration-300 active:scale-90 ${
+            isSettingsActive ? 'bg-white text-black shadow-lg' : 'text-on-surface/65 hover:text-on-surface hover:bg-white/5'
+          }`}
+          title="Engine Settings"
+        >
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: isSettingsActive ? "'FILL' 1" : "'FILL' 0" }}>settings</span>
+        </Link>
+        <Link 
+          to="/" 
+          className="flex items-center justify-center p-3 rounded-full text-on-surface/65 hover:text-on-surface hover:bg-white/5 transition-all duration-300 active:scale-90"
+          title="Log Out"
+        >
+          <span className="material-symbols-outlined">logout</span>
+        </Link>
+      </nav>
+    </div>
+  );
+}
+
+function SignSpeakLayout() {
+  return (
+    <div className="min-h-screen w-full bg-[#050505] text-on-background relative overflow-hidden flex flex-col font-sans select-none pb-28">
+      {/* Ambient background glows */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[140px] pointer-events-none" />
+      
+      {/* Top Header */}
+      <SignSpeakHeader />
+      
+      {/* Page Content */}
+      <div className="flex-grow pt-24 px-margin-mobile">
           <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/live" element={<LiveDetection />} />
-            <Route path="/upload" element={<UploadAnalyze />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/about" element={<About />} />
+            <Route index element={<SignSpeakTranslate />} />
+            <Route path="result" element={<SignSpeakResult />} />
+            <Route path="history" element={<SignSpeakHistory />} />
+            <Route path="settings" element={<SignSpeakSettings />} />
           </Routes>
+      </div>
+
+      {/* Floating Bottom Nav */}
+      <SignSpeakBottomNav />
+    </div>
+  );
+}
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const isAuthenticated = useAppStore((state) => state.isAuthenticated);
+  return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />;
+}
+
+function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="/live/*"
+        element={
+          <ProtectedRoute>
+            <SignSpeakLayout />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/upload"
+        element={
+          <ProtectedRoute>
+            <UploadAnalyze />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/developer"
+        element={
+          <ProtectedRoute>
+            <Developer />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/about" element={<About />} />
+      <Route
+        path="/signspeak/*"
+        element={
+          <ProtectedRoute>
+            <SignSpeakLayout />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <div className="min-h-screen bg-background text-on-background font-sans selection:bg-primary selection:text-on-primary">
+        <NavBar />
+        <main className="min-h-[calc(100vh-64px)]">
+          <AppRoutes />
         </main>
       </div>
     </Router>
   );
 }
-
-export default App;

@@ -12,13 +12,13 @@ dist
 dist-ssr
 *.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+# Editors
 .idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.vscode/
+
+# Local Python venv (if located in frontend)
+venv/
+/venv/
+.venv/
+
+.vercel
