@@ -22,34 +22,11 @@ logger = logging.getLogger("sign2speech.backend")
 # ---------------------------------------------------------------------------
 # Configuration from environment
 # ---------------------------------------------------------------------------
-BACKEND_HOST = os.getenv("BACKEND_HOST", "0.0.0.0")
-BACKEND_PORT = int(os.getenv("BACKEND_PORT", "8000"))
-CORS_ORIGINS = [o.strip() for o in os.getenv("CORS_ORIGINS", "*").split(",")]
-API_KEY = os.getenv("API_KEY", "")
-MAX_UPLOAD_MB = int(os.getenv("MAX_UPLOAD_SIZE_MB", "10"))
-MODEL_PATH = os.getenv("MODEL_PATH", "models/sign.pt")
-CONFIDENCE_THRESHOLD = float(os.getenv("CONFIDENCE_THRESHOLD", "0.5"))
-LOG_DIR = os.getenv("LOG_DIR", "logs")
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/generate")
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3")
-OLLAMA_TIMEOUT = int(os.getenv("OLLAMA_TIMEOUT", "30"))
-
-
-CLASS_NAMES = [
-    "school", "sorry", "help", "easy", "work",
-    "age", "effort", "respect", "near", "home",
-    "friend", "washroom", "preset", "pass", "fail",
-    "village", "eating", "drinking", "teacher", "dress",
-    "message", "good",
-]
-
-CLASS_CATEGORIES = {
-    "basic": ["school", "sorry", "help", "easy", "work", "age", "effort", "respect"],
-    "location": ["near", "home", "village", "washroom"],
-    "social": ["friend", "teacher", "message", "good"],
-    "actions": ["eating", "drinking", "pass", "fail"],
-    "settings": ["preset", "dress"],
-}
+from backend.config import (
+    BACKEND_HOST, BACKEND_PORT, CORS_ORIGINS, API_KEY, MAX_UPLOAD_MB,
+    MODEL_PATH, CONFIDENCE_THRESHOLD, LOG_DIR, OLLAMA_URL, OLLAMA_MODEL,
+    OLLAMA_TIMEOUT, CLASS_NAMES, CLASS_CATEGORIES
+)
 
 # ---------------------------------------------------------------------------
 # Startup tracking
@@ -106,39 +83,10 @@ async def verify_api_key(authorization: Optional[str] = Header(None)):
 # ---------------------------------------------------------------------------
 # Pydantic request / response models
 # ---------------------------------------------------------------------------
-class SpeakRequest(BaseModel):
-    sentence: str = Field(..., min_length=1, max_length=2000)
-    voice_id: Optional[str] = "en-US-EmmaNeural"
-
-
-class SpeakResponse(BaseModel):
-    audio_url: str
-    sentence: str
-
-
-class UploadResponse(BaseModel):
-    job_id: str
-    gestures: list[str]
-    sentence: str
-    confidence_scores: list[float]
-
-
-class HealthResponse(BaseModel):
-    status: str
-    model_loaded: bool
-    uptime_seconds: float
-    version: str
-    class_count: int
-
-
-class AnalyticsResponse(BaseModel):
-    total_sessions: int
-    gestures_detected: int
-    avg_confidence: float
-    sentences_spoken: int
-    gesture_frequency: dict[str, int]
-    session_history: list[dict]
-    recent_detections: list[dict]
+from backend.schemas import (
+    SpeakRequest, SpeakResponse, UploadResponse, HealthResponse,
+    AnalyticsResponse, TranslateRequest
+)
 
 
 # ---------------------------------------------------------------------------
@@ -394,10 +342,7 @@ async def upload_calibration(file: UploadFile = File(...), side: str = "left"):
     return {"status": "calibrated", "side": side, "file": str(path)}
 
 
-class TranslateRequest(BaseModel):
-    sentence: str
-    use_ollama: bool = True
-    voice_id: Optional[str] = None
+
 
 
 @app.post("/api/translate")
