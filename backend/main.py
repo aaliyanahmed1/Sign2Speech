@@ -397,6 +397,7 @@ async def upload_calibration(file: UploadFile = File(...), side: str = "left"):
 class TranslateRequest(BaseModel):
     sentence: str
     use_ollama: bool = True
+    voice_id: Optional[str] = None
 
 
 @app.post("/api/translate")
@@ -411,21 +412,30 @@ async def translate_sentence(req: TranslateRequest):
             if not words:
                 return {"translated": ""}
             
-            if len(words) == 1:
-                from components.yolo2voice_pipeline import generate_sentence_with_ollama
-                sentence = generate_sentence_with_ollama(words[0])
+            is_urdu = req.voice_id and req.voice_id.startswith("ur-")
+            if is_urdu:
+                prompt = (
+                    f"Translate and combine the following sign language gestures in order into a single, "
+                    f"grammatically correct and natural Urdu sentence written in Urdu script (e.g., 'آپ کیسے ہیں'): {', '.join(words)}. "
+                    f"Only return the final Urdu sentence in Urdu script, no English translation and no other text."
+                )
             else:
+                if len(words) == 1:
+                    from components.yolo2voice_pipeline import generate_sentence_with_ollama
+                    sentence = generate_sentence_with_ollama(words[0])
+                    return {"translated": sentence}
                 prompt = (
                     f"Combine the following sign language gestures in order into a single, "
                     f"grammatically correct and natural English sentence: {', '.join(words)}. "
                     f"Only return the final sentence, no other text."
                 )
-                payload = {"model": OLLAMA_MODEL, "prompt": prompt, "stream": False}
-                response = requests.post(OLLAMA_URL, json=payload, timeout=OLLAMA_TIMEOUT)
-                response.raise_for_status()
-                sentence = response.json().get("response", "").strip()
-                if (sentence.startswith('"') and sentence.endswith('"')) or (sentence.startswith("'") and sentence.endswith("'")):
-                    sentence = sentence[1:-1]
+                
+            payload = {"model": OLLAMA_MODEL, "prompt": prompt, "stream": False}
+            response = requests.post(OLLAMA_URL, json=payload, timeout=OLLAMA_TIMEOUT)
+            response.raise_for_status()
+            sentence = response.json().get("response", "").strip()
+            if (sentence.startswith('"') and sentence.endswith('"')) or (sentence.startswith("'") and sentence.endswith("'")):
+                sentence = sentence[1:-1]
             return {"translated": sentence}
         except Exception as e:
             logger.warning("Ollama translation failed, falling back: %s", e)
