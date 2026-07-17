@@ -31,7 +31,7 @@ function NavBar() {
 
   const isActive = (path: string) => location.pathname === path;
 
-  const navClass = isSignSpeak ? "hidden md:block" : "block";
+  const navClass = isSignSpeak ? "hidden" : "block";
   const visibleLinks = isAuthenticated ? NAV_LINKS : [];
 
   return (

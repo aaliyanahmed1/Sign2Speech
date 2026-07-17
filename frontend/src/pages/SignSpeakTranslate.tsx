@@ -150,7 +150,7 @@ export default function SignSpeakTranslate() {
   const animFrameRef = useRef<number>(0);
 
   // App mode segment selector
-  const [translateMode, setTranslateMode] = useState<'sign2speech' | 'speech2sign' | 'practice'>('sign2speech');
+  const [translateMode, setTranslateMode] = useState<'sign2speech' | 'speech2sign'>('sign2speech');
 
   // Speech-to-Sign (mic translation) state
   const [isListening, setIsListening] = useState(false);
@@ -159,87 +159,15 @@ export default function SignSpeakTranslate() {
   const recognitionRef = useRef<any>(null);
   const [typedText, setTypedText] = useState('');
 
-  // Practice Arena state variables
-  const [targetWord, setTargetWord] = useState('help');
-  const [streak, setStreak] = useState(() => Number(localStorage.getItem('sign_speak_streak') || '0'));
-  const [highScore, setHighScore] = useState(() => Number(localStorage.getItem('sign_speak_high_score') || '0'));
-  const [arenaCompleted, setArenaCompleted] = useState(false);
-  const [showHint, setShowHint] = useState(false);
 
-  // Ref to pass latest state to websocket callbacks without triggering reconnects
-  const arenaMatchRef = useRef({ translateMode, targetWord, arenaCompleted });
-  useEffect(() => {
-    arenaMatchRef.current = { translateMode, targetWord, arenaCompleted };
-  }, [translateMode, targetWord, arenaCompleted]);
-
-  const loadNextArenaWord = useCallback(() => {
-    const keys = Object.keys(SIGN_TUTORIALS).filter(k => k !== 'eatig');
-    const randomKey = keys[Math.floor(Math.random() * keys.length)];
-    setTargetWord(randomKey);
-    setArenaCompleted(false);
-    setShowHint(false);
-  }, []);
-
-  const handleArenaMatch = useCallback(() => {
-    setArenaCompleted(true);
-    const newStreak = streak + 1;
-    setStreak(newStreak);
-    localStorage.setItem('sign_speak_streak', String(newStreak));
-    
-    if (newStreak > highScore) {
-      setHighScore(newStreak);
-      localStorage.setItem('sign_speak_high_score', String(newStreak));
-      addToast('New High Score! Excellent!', 'success');
-    } else {
-      addToast('Sign Match! Correct!', 'success');
-    }
-    
-    // Play Web Audio beep
-    try {
-      const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
-      const oscillator = audioCtx.createOscillator();
-      const gainNode = audioCtx.createGain();
-      oscillator.connect(gainNode);
-      gainNode.connect(audioCtx.destination);
-      oscillator.type = 'sine';
-      oscillator.frequency.setValueAtTime(580, audioCtx.currentTime);
-      gainNode.gain.setValueAtTime(0.12, audioCtx.currentTime);
-      oscillator.start();
-      oscillator.stop(audioCtx.currentTime + 0.16);
-    } catch (e) {
-      console.warn("AudioContext beep failed", e);
-    }
-    
-    setTimeout(() => {
-      loadNextArenaWord();
-    }, 2500);
-  }, [streak, highScore, addToast, loadNextArenaWord]);
-
-  const handleSkipArenaWord = () => {
-    setStreak(0);
-    localStorage.setItem('sign_speak_streak', '0');
-    addToast('Streak reset to 0', 'info');
-    loadNextArenaWord();
-  };
 
   const { connect, disconnect, connected, sendMessage } = useWebSocket({
-    onDetection: (data) => {
+    onDetection: () => {
       if (vibrationEnabled && 'vibrate' in navigator) {
         navigator.vibrate(50);
       }
 
-      const { translateMode: currentMode, targetWord: currentWord, arenaCompleted: currentCompleted } = arenaMatchRef.current;
-      
-      if (currentMode === 'practice' && !currentCompleted) {
-        const detectedCls = data.gesture.toLowerCase();
-        const targetCls = currentWord.toLowerCase();
-        
-        if (detectedCls === targetCls || 
-            (targetCls === 'eating' && detectedCls === 'eatig') || 
-            (targetCls === 'eatig' && detectedCls === 'eating')) {
-          handleArenaMatch();
-        }
-      }
+
     },
   });
 
@@ -294,7 +222,7 @@ export default function SignSpeakTranslate() {
 
   // Frame sender loop for Sign-to-Speech & Practice Arena
   useEffect(() => {
-    if (!cameraOn || !connected || (translateMode !== 'sign2speech' && translateMode !== 'practice')) return;
+    if (!cameraOn || !connected || translateMode !== 'sign2speech') return;
 
     const intervalTime = bandwidthMode === 'high' ? 200 : bandwidthMode === 'standard' ? 250 : 333;
 
@@ -324,12 +252,7 @@ export default function SignSpeakTranslate() {
     }
   }, [translateMode, cameraOn, stopCamera]);
 
-  // Initialize practice word when joining Practice Mode
-  useEffect(() => {
-    if (translateMode === 'practice') {
-      loadNextArenaWord();
-    }
-  }, [translateMode, loadNextArenaWord]);
+
 
   const handleClearStream = () => {
     if (vibrationEnabled && 'vibrate' in navigator) navigator.vibrate(15);
@@ -508,7 +431,6 @@ export default function SignSpeakTranslate() {
         {[
           { id: 'sign2speech', label: 'Sign to Voice', icon: 'interpreter_mode' },
           { id: 'speech2sign', label: 'Voice to Sign', icon: 'sign_language' },
-          { id: 'practice', label: 'Practice Arena', icon: 'sports_esports' },
         ].map((m) => (
           <button
             key={m.id}
@@ -794,7 +716,7 @@ export default function SignSpeakTranslate() {
             <span className="material-symbols-outlined text-[26px] font-bold">campaign</span>
           </button>
         </>
-      ) : translateMode === 'speech2sign' ? (
+      ) : (
         // Mode B: Speech-to-Sign (Speaking to Deaf)
         <>
           <section className="relative w-full h-[40vh] min-h-[340px] bg-background flex flex-col items-center justify-center p-6 border border-white/5 rounded-[2rem] overflow-hidden shadow-inner">
@@ -930,152 +852,6 @@ export default function SignSpeakTranslate() {
                 )}
               </div>
             </div>
-          </section>
-        </>
-      ) : (
-        // Mode C: Interactive Sign Practice Arena
-        <>
-          <section className="relative w-full h-[40vh] min-h-[340px] bg-surface-container-lowest overflow-hidden rounded-[2rem] border border-white/5 relative group cursor-pointer" onClick={handleToggleCamera}>
-            {/* Practice Video element (always mounted to prevent null refs & ensure autoplay) */}
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-                cameraOn ? 'opacity-85 pointer-events-auto' : 'opacity-0 pointer-events-none'
-              }`}
-            />
-
-            {/* Offline fallback image preview */}
-            {!cameraOn && (
-              <>
-                <div 
-                  className="absolute inset-0 w-full h-full opacity-50 bg-cover bg-center transition-all duration-300"
-                  style={{ backgroundImage: "url('/male_signing.jpg')" }}
-                />
-                <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center gap-3">
-                  <button 
-                    onClick={(e) => { e.stopPropagation(); handleToggleCamera(); }}
-                    className="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0_0_25px_rgba(184,200,223,0.4)] hover:scale-105 active:scale-95 transition-all cursor-pointer border-0"
-                  >
-                    <span className="material-symbols-outlined text-3xl font-bold">videocam</span>
-                  </button>
-                  <p className="text-on-surface font-syne font-bold text-xs uppercase tracking-widest">
-                    Tap to Start Practice Camera
-                  </p>
-                </div>
-              </>
-            )}
-
-            {/* Viewfinder Overlays */}
-            <div className="absolute top-6 left-6 viewfinder-corner border-t-2 border-l-2 border-primary/30"></div>
-            <div className="absolute top-6 right-6 viewfinder-corner border-t-2 border-r-2 border-primary/30"></div>
-            <div className="absolute bottom-6 left-6 viewfinder-corner border-b-2 border-l-2 border-primary/30"></div>
-            <div className="absolute bottom-6 right-6 viewfinder-corner border-b-2 border-r-2 border-primary/30"></div>
-
-            {/* Simulated Hand Tracking Overlays */}
-            {cameraOn && (
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="skeleton-dot animate-ping bg-primary" style={{ top: '48%', left: '45%' }}></div>
-                <div className="skeleton-dot bg-secondary" style={{ top: '42%', left: '52%', animationDelay: '0.2s' }}></div>
-                <div className="skeleton-dot bg-primary" style={{ top: '55%', left: '40%', animationDelay: '0.4s' }}></div>
-                <div className="skeleton-dot bg-tertiary" style={{ top: '38%', left: '48%', animationDelay: '0.6s' }}></div>
-              </div>
-            )}
-
-            {/* HUD Status Bar */}
-            <div className="absolute top-6 left-6 z-10">
-              <div className="glass-panel-heavy text-white px-4 py-2 rounded-full flex items-center gap-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.08em] cursor-pointer hover:bg-white/10 active:scale-95 transition-all">
-                <span className={`w-2 h-2 rounded-full ${cameraOn ? 'bg-red-500/80 shadow-[0_0_8px_rgba(239,68,68,0.5)]' : 'bg-outline'} live-indicator`}></span>
-                {cameraOn ? 'Practice Camera Active' : 'Camera Paused'}
-              </div>
-            </div>
-
-            <div className="absolute bottom-6 right-6 z-10">
-              <div className="glass-panel-heavy text-on-surface/95 px-4 py-2 rounded-full flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider">
-                <span className="material-symbols-outlined text-[18px] text-primary">sports_esports</span>
-                Target: {targetWord.toUpperCase()}
-              </div>
-            </div>
-
-            {/* Floating Camera Swap FAB */}
-            {cameraOn && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSwapCamera();
-                }}
-                className="absolute top-4 right-4 z-40 w-11 h-11 rounded-full bg-surface/85 backdrop-blur-md border border-white/10 flex items-center justify-center text-primary active:scale-90 hover:text-secondary shadow-lg transition-all"
-                title="Switch Camera Source"
-              >
-                <span className="material-symbols-outlined text-[20px]">flip_camera_ios</span>
-              </button>
-            )}
-          </section>
-
-          {/* Interactive Challenge & Hints */}
-          <section className="flex-grow flex flex-col gap-6 text-left">
-            <div className="glass-panel-heavy rounded-[2rem] p-6 border border-white/5 relative flex flex-col md:flex-row justify-between items-center gap-6">
-              
-              {/* Challenge Target Card */}
-              <div className="flex-1 space-y-2">
-                <span className="text-[10px] font-mono uppercase text-on-surface-variant tracking-wider">Practice Challenge</span>
-                <div className="flex items-center gap-3">
-                  <span className="text-4xl">{SIGN_TUTORIALS[targetWord]?.illustration}</span>
-                  <div>
-                    <h3 className="font-syne font-bold text-2xl text-primary capitalize">{SIGN_TUTORIALS[targetWord]?.title}</h3>
-                    <p className="text-xs text-on-surface-variant mt-0.5">Perform this gesture in front of the camera.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Actions & Target Word selector */}
-              <div className="flex flex-wrap gap-2 justify-end w-full md:w-auto">
-                <button 
-                  onClick={() => setShowHint(!showHint)}
-                  className="h-11 px-6 border border-white/10 text-on-surface hover:bg-white/5 text-xs font-bold rounded-xl active:scale-95 transition-all cursor-pointer flex items-center gap-2"
-                >
-                  <span className="material-symbols-outlined text-lg">lightbulb</span>
-                  {showHint ? 'Hide Tutorial' : 'Show Hint'}
-                </button>
-                <button 
-                  onClick={handleSkipArenaWord}
-                  className="h-11 px-6 bg-primary text-white text-xs font-bold rounded-xl active:scale-95 transition-all cursor-pointer flex items-center gap-2 border-0"
-                >
-                  <span className="material-symbols-outlined text-lg">skip_next</span>
-                  Skip Challenge
-                </button>
-              </div>
-            </div>
-
-            {/* Interactive Hint drawer */}
-            <AnimatePresence>
-              {showHint && !arenaCompleted && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="overflow-hidden glass-panel-heavy rounded-2xl p-6 text-left space-y-4 border border-white/5 shrink-0"
-                >
-                  <div className="flex items-center gap-3 border-b border-white/5 pb-3">
-                    <span className="text-2xl">{SIGN_TUTORIALS[targetWord]?.illustration}</span>
-                    <div>
-                      <h4 className="font-syne font-bold text-sm text-primary">Tutorial Hints</h4>
-                      <p className="text-[10px] text-on-surface-variant">Step-by-step gesture guidance</p>
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    {SIGN_TUTORIALS[targetWord]?.steps.map((step, idx) => (
-                      <div key={idx} className="flex gap-2 text-xs text-on-surface leading-relaxed">
-                        <span className="font-mono text-primary font-bold">{idx + 1}.</span>
-                        <p>{step}</p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </section>
         </>
       )}
