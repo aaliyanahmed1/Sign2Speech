@@ -105,7 +105,7 @@ export default function Login() {
         </div>
 
         {/* Auth Card */}
-        <div className="glass-card rounded-3xl p-8 relative overflow-hidden">
+        <div className="glass-card-dark rounded-3xl p-8 relative overflow-hidden">
           {/* Top subtle glow line */}
           <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent" />
           

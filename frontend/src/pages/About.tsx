@@ -61,7 +61,7 @@ export default function About() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="glass-card rounded-2xl p-6 flex flex-col items-start text-left space-y-4"
+              className="glass-card-dark rounded-2xl p-6 flex flex-col items-start text-left space-y-4"
             >
               <div className="w-12 h-12 rounded-xl bg-surface-variant flex items-center justify-center border border-outline-variant">
                 {item.icon}
@@ -83,7 +83,7 @@ export default function About() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {GESTURES.map((group) => (
-            <div key={group.category} className="glass-card rounded-2xl p-5 space-y-3.5">
+            <div key={group.category} className="glass-card-dark rounded-2xl p-5 space-y-3.5">
               <h3 className="font-syne font-bold text-xs uppercase tracking-wider text-secondary border-b border-outline-variant/60 pb-2">{group.category}</h3>
               <div className="flex flex-wrap gap-1.5">
                 {group.items.map((g) => (
@@ -103,7 +103,7 @@ export default function About() {
           <MessageSquare className="text-primary" size={22} />
           <h2 className="text-2xl font-syne font-bold text-on-surface">How It Works</h2>
         </div>
-        <div className="glass-card rounded-2xl p-6">
+        <div className="glass-card-dark rounded-2xl p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
             {[
               { step: '1', title: 'Capture Sign', desc: 'Signer performs gestures in front of the camera, instantly tracked frame-by-frame.' },

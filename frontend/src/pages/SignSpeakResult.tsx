@@ -141,7 +141,7 @@ export default function SignSpeakResult() {
       </div>
 
       {/* Translation Output Card */}
-      <section className={`glass-card rounded-[2rem] p-8 relative flex flex-col gap-4 overflow-hidden transition-all duration-300 ${
+      <section className={`glass-card-dark rounded-[2rem] p-8 relative flex flex-col gap-4 overflow-hidden transition-all duration-300 ${
         isCleared ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
       }`}>
         <div className="flex justify-between items-center">
@@ -213,7 +213,7 @@ export default function SignSpeakResult() {
       </div>
 
       {/* AI Refinement Status Box */}
-      <div className="glass-card rounded-[1.5rem] p-5 flex items-start gap-4 mt-auto shrink-0">
+      <div className="glass-card-dark rounded-[1.5rem] p-5 flex items-start gap-4 mt-auto shrink-0">
         <div className="bg-secondary-container/30 border border-secondary/20 p-2 rounded-xl text-secondary flex items-center justify-center">
           <span className="material-symbols-outlined text-[20px]">auto_awesome</span>
         </div>
