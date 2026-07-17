@@ -454,7 +454,7 @@ export default function SignSpeakTranslate() {
         // Mode A: Sign-to-Speech (Deaf to Speaking)
         <>
           {/* Main Video Feed Container */}
-          <section className="relative">
+          <section className="relative order-1">
             <div className="w-full aspect-[4/3] md:aspect-video bg-surface-container-lowest rounded-[2.5rem] overflow-hidden video-container-floating relative group border border-white/5">
               {/* Webcam stream (always mounted to prevent null refs & ensure autoplay) */}
               <video
@@ -526,7 +526,7 @@ export default function SignSpeakTranslate() {
           </section>
 
           {/* Bento HUD Dashboard */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 order-3 md:order-2">
             
             {/* Card 1: Recognition Engine */}
             <div className="glass-panel-heavy p-6 rounded-[2rem] flex flex-col justify-between group text-left border border-white/5">
@@ -638,7 +638,7 @@ export default function SignSpeakTranslate() {
           </div>
 
           {/* Premium Translation Stream Area */}
-          <section className="space-y-4">
+          <section className="space-y-4 order-2 md:order-3">
             <div className="flex items-center justify-between px-2">
               <h2 className="text-sm font-bold font-syne text-on-surface tracking-wider uppercase">Live Transcription</h2>
               <div className="flex gap-2">
