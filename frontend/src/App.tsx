@@ -228,7 +228,12 @@ function SignSpeakBottomNav() {
   );
 }
 
-function SignSpeakSidebar() {
+interface SidebarProps {
+  collapsed: boolean;
+  onToggle: () => void;
+}
+
+function SignSpeakSidebar({ collapsed, onToggle }: SidebarProps) {
   const location = useLocation();
   const currentPath = location.pathname;
   const prefix = currentPath.startsWith('/live') ? '/live' : '/signspeak';
@@ -250,12 +255,23 @@ function SignSpeakSidebar() {
   ];
 
   return (
-    <aside className="hidden md:flex flex-col w-68 h-screen fixed left-0 top-0 bg-[#08080a]/80 backdrop-blur-2xl border-r border-white/5 z-45 p-6 justify-between select-none">
-      <div className="space-y-8">
+    <aside className={`hidden md:flex flex-col ${collapsed ? 'w-20' : 'w-68'} h-screen fixed left-0 top-0 bg-[#08080a]/80 backdrop-blur-2xl border-r border-white/5 z-45 p-4 py-6 justify-between select-none transition-all duration-300`}>
+      <div className="space-y-8 relative">
+        {/* Collapse Toggle Chevron */}
+        <button
+          onClick={onToggle}
+          className="absolute -right-7 top-4 w-6.5 h-6.5 rounded-full bg-white text-black border border-outline-variant flex items-center justify-center cursor-pointer shadow-md hover:scale-105 active:scale-95 transition-all z-50"
+          title={collapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+        >
+          <span className="material-symbols-outlined text-sm font-bold">
+            {collapsed ? "chevron_right" : "chevron_left"}
+          </span>
+        </button>
+
         {/* Brand Logo */}
-        <Link to="/" className="flex items-center gap-3 text-primary font-bold text-lg tracking-wider uppercase font-syne no-underline pl-2 mt-2">
+        <Link to="/" className={`flex items-center gap-3 text-primary font-bold text-lg tracking-wider uppercase font-syne no-underline pl-2 mt-2 ${collapsed ? 'justify-center pl-0' : ''}`}>
           <img src="/logo.jpg" alt="Sign2Speech Logo" className="w-8 h-8 rounded-lg object-cover border border-white/10" />
-          <span>Sign2Speech</span>
+          {!collapsed && <span className="transition-opacity duration-300">Sign2Speech</span>}
         </Link>
 
         {/* Links */}
@@ -264,14 +280,15 @@ function SignSpeakSidebar() {
             <Link
               key={item.to}
               to={item.to}
-              className={`flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 no-underline ${
+              className={`flex items-center gap-4 ${collapsed ? 'justify-center px-0' : 'px-4'} py-3.5 rounded-2xl transition-all duration-300 no-underline ${
                 item.active 
                   ? 'bg-white text-black font-semibold shadow-lg shadow-white/5' 
                   : 'text-on-surface/65 hover:text-on-surface hover:bg-white/5'
               }`}
+              title={collapsed ? item.label : undefined}
             >
               <span className="material-symbols-outlined" style={{ fontVariationSettings: item.active ? "'FILL' 1" : "'FILL' 0" }}>{item.icon}</span>
-              <span className="text-sm font-medium">{item.label}</span>
+              {!collapsed && <span className="text-sm font-medium transition-opacity duration-300">{item.label}</span>}
             </Link>
           ))}
         </nav>
@@ -279,22 +296,25 @@ function SignSpeakSidebar() {
 
       {/* User profile & Log out block */}
       <div className="space-y-4 border-t border-white/5 pt-6 mb-2">
-        <div className="flex items-center gap-3 px-2">
-          <div className="w-9 h-9 rounded-full overflow-hidden border border-white/10">
+        <div className={`flex items-center gap-3 ${collapsed ? 'justify-center px-0' : 'px-2'}`}>
+          <div className="w-9 h-9 rounded-full overflow-hidden border border-white/10 shrink-0">
             <img alt="Profile" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/a/default-user=s120-c"/>
           </div>
-          <div className="flex flex-col text-left min-w-0">
-            <span className="text-xs text-on-surface font-semibold truncate">{user?.name || 'Demo User'}</span>
-            <span className="text-[10px] text-on-surface-variant font-mono opacity-65">FYP Practitioner</span>
-          </div>
+          {!collapsed && (
+            <div className="flex flex-col text-left min-w-0 transition-opacity duration-300">
+              <span className="text-xs text-on-surface font-semibold truncate">{user?.name || 'Demo User'}</span>
+              <span className="text-[10px] text-on-surface-variant font-mono opacity-65">FYP Practitioner</span>
+            </div>
+          )}
         </div>
         
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-red-400 hover:text-red-300 hover:bg-red-500/5 transition-all duration-200 border-0 bg-transparent cursor-pointer text-left"
+          className={`w-full flex items-center gap-4 ${collapsed ? 'justify-center px-0' : 'px-4'} py-3.5 rounded-2xl text-red-400 hover:text-red-300 hover:bg-red-500/5 transition-all duration-200 border-0 bg-transparent cursor-pointer text-left`}
+          title={collapsed ? "Log Out Portal" : undefined}
         >
           <span className="material-symbols-outlined">logout</span>
-          <span className="text-sm font-medium">Log Out Portal</span>
+          {!collapsed && <span className="text-sm font-medium transition-opacity duration-300">Log Out Portal</span>}
         </button>
       </div>
     </aside>
@@ -302,6 +322,8 @@ function SignSpeakSidebar() {
 }
 
 function SignSpeakLayout() {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
   return (
     <div className="min-h-screen w-full bg-[#050505] text-on-background relative overflow-hidden flex flex-col md:flex-row font-sans select-none pb-28 md:pb-0">
       {/* Ambient background glows */}
@@ -309,7 +331,7 @@ function SignSpeakLayout() {
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[140px] pointer-events-none" />
       
       {/* Left Sidebar (Desktop only) */}
-      <SignSpeakSidebar />
+      <SignSpeakSidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed(!sidebarCollapsed)} />
 
       {/* Mobile Top Header (Mobile only) */}
       <div className="md:hidden w-full">
@@ -317,7 +339,7 @@ function SignSpeakLayout() {
       </div>
 
       {/* Page Content Container */}
-      <div className="flex-grow pt-24 md:pt-8 md:pl-72 px-margin-mobile w-full overflow-x-hidden">
+      <div className={`flex-grow pt-24 md:pt-8 ${sidebarCollapsed ? 'md:pl-24' : 'md:pl-72'} px-margin-mobile w-full overflow-x-hidden transition-all duration-300`}>
           <Routes>
             <Route index element={<SignSpeakTranslate />} />
             <Route path="result" element={<SignSpeakResult />} />

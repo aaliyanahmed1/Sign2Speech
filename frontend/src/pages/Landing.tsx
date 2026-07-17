@@ -58,36 +58,42 @@ export default function Landing() {
       }
     });
 
-    // 2. Features Card Stagger Slide-up (Triggers earlier and stays visible)
-    gsap.from(".feature-card", {
-      y: 45,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.12,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".features-trigger",
-        start: "top 95%",
-        toggleActions: "play none none none",
-      }
+    // 2. Features Card Stagger Slide-up (Individual ScrollTriggers for 100% visibility)
+    const featureCards = gsap.utils.toArray<HTMLElement>(".feature-card");
+    featureCards.forEach((card, index) => {
+      gsap.from(card, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        delay: (index % 3) * 0.08,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 98%",
+          toggleActions: "play none none none",
+        }
+      });
     });
 
-    // 3. Statistics Stagger slide-up (Triggers earlier and stays visible)
-    gsap.from(".stat-card", {
-      y: 35,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.12,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".stats-trigger",
-        start: "top 95%",
-        toggleActions: "play none none none",
-      }
+    // 3. Statistics Stagger slide-up (Individual ScrollTriggers for 100% visibility)
+    const statCards = gsap.utils.toArray<HTMLElement>(".stat-card");
+    statCards.forEach((card, index) => {
+      gsap.from(card, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        delay: (index % 3) * 0.08,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 98%",
+          toggleActions: "play none none none",
+        }
+      });
     });
 
-    // Tween the actual number values in statistics cards dynamically on scroll
-    const counters = document.querySelectorAll(".stat-counter");
+    // Tween the actual number values in statistics cards dynamically on scroll (Scoped query)
+    const counters = gsap.utils.toArray<HTMLElement>(".stat-counter");
     counters.forEach((c) => {
       const targetVal = parseFloat(c.getAttribute("data-target") || "0");
       const isPercent = c.getAttribute("data-suffix") === "%";
@@ -98,7 +104,8 @@ export default function Landing() {
         ease: "power2.out",
         scrollTrigger: {
           trigger: c,
-          start: "top 90%",
+          start: "top 98%",
+          toggleActions: "play none none none",
         },
         onUpdate: () => {
           c.textContent = isPercent ? `${Math.round(obj.val)}%` : `${obj.val}`;
@@ -106,18 +113,21 @@ export default function Landing() {
       });
     });
 
-    // 4. Vocabulary grid categories staggered pop-in (Triggers earlier and stays visible)
-    gsap.from(".vocab-category-card", {
-      scale: 0.9,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.15,
-      ease: "back.out(1.2)",
-      scrollTrigger: {
-        trigger: ".vocab-trigger",
-        start: "top 95%",
-        toggleActions: "play none none none",
-      }
+    // 4. Vocabulary grid categories staggered pop-in (Individual ScrollTriggers for 100% visibility)
+    const vocabCards = gsap.utils.toArray<HTMLElement>(".vocab-category-card");
+    vocabCards.forEach((card, index) => {
+      gsap.from(card, {
+        scale: 0.92,
+        opacity: 0,
+        duration: 0.7,
+        delay: (index % 3) * 0.12,
+        ease: "back.out(1.2)",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 98%",
+          toggleActions: "play none none none",
+        }
+      });
     });
   }, { scope: containerRef });
 
