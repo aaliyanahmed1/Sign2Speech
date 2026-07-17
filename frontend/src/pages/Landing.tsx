@@ -13,6 +13,14 @@ export default function Landing() {
   const [simulatedSentence, setSimulatedSentence] = useState('Hello.');
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   // Simulate live translation preview on the landing page for visual engagement
   useEffect(() => {
     const steps = [
@@ -109,7 +117,7 @@ export default function Landing() {
     <div ref={containerRef} className="min-h-screen text-on-surface antialiased overflow-x-hidden selection:bg-primary/30 font-sans relative bg-black">
       {/* Zoomable Parallax Background Layer */}
       <div 
-        className="parallax-bg absolute inset-0 bg-cover bg-center z-0 pointer-events-none opacity-40" 
+        className="parallax-bg fixed inset-0 bg-cover bg-center z-0 pointer-events-none opacity-40" 
         style={{ backgroundImage: "url('/male_signing.jpg')" }} 
       />
       {/* Dark frosted overlay to make text pop while keeping the background image beautifully visible */}
@@ -329,41 +337,147 @@ export default function Landing() {
 
           </div>
         </section>
-        {/* Features Grid */}
-        <section className="features-trigger px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mb-20 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Features Bento Grid */}
+        <section className="features-trigger px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mb-20 relative z-10 text-left">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
-            {/* Spatial Logic */}
-            <div className="feature-card apple-glass-dark p-8 rounded-[2rem] group hover:scale-[1.02] transition-all duration-500 text-left">
-              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all">
-                <span className="material-symbols-outlined text-primary text-3xl">gesture</span>
+            {/* Bento Cell 1: Neural Hand Skeletal Tracker (Col-span-2) */}
+            <div 
+              onMouseMove={handleMouseMove}
+              className="feature-card spotlight-card glass-card-dark p-8 rounded-[2rem] lg:col-span-2 flex flex-col md:flex-row justify-between items-center gap-8 group hover:scale-[1.01] transition-all duration-500"
+            >
+              <div className="max-w-md space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all">
+                  <span className="material-symbols-outlined text-primary text-2xl">gesture</span>
+                </div>
+                <h3 className="font-syne font-bold text-xl text-on-surface">Neural Hand Tracking</h3>
+                <p className="text-xs text-on-surface-variant opacity-75 leading-relaxed">
+                  Real-time 21-point hand skeletal landmark detection mapping joints, finger curls, and depth coordinates at 60 FPS natively in the browser with WebGL acceleration.
+                </p>
+                <div className="flex gap-4 pt-2">
+                  <div className="flex items-center gap-1.5 bg-green-500/10 border border-green-500/20 text-green-400 font-mono text-[10px] px-2.5 py-1 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-ping" />
+                    WebGPU Active
+                  </div>
+                  <div className="bg-white/5 border border-white/10 text-on-surface-variant font-mono text-[10px] px-2.5 py-1 rounded-full">
+                    21 Joints Mapped
+                  </div>
+                </div>
               </div>
-              <h3 className="font-syne font-bold text-lg text-on-surface mb-3">Spatial Logic</h3>
-              <p className="text-xs text-on-surface-variant opacity-70 leading-relaxed">Advanced hand-skeletal mapping that recognizes nuances in gesture depth and speed.</p>
+
+              {/* Hand Skeletal Visualizer Animation */}
+              <div className="w-48 h-48 bg-white/5 border border-white/10 rounded-2xl relative flex items-center justify-center overflow-hidden shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+                <svg className="w-36 h-36 text-primary/40" viewBox="0 0 100 100">
+                  {/* Palm Lines & Knuckle Nodes */}
+                  <motion.path 
+                    d="M 50,90 Q 50,70 55,60 T 60,35 Q 50,30 40,40 T 45,65 Z" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="1.5"
+                    animate={{ d: [
+                      "M 50,90 Q 50,72 56,60 T 62,35 Q 52,32 42,40 T 46,65 Z",
+                      "M 50,90 Q 48,68 54,58 T 58,38 Q 48,28 38,38 T 44,63 Z",
+                      "M 50,90 Q 50,72 56,60 T 62,35 Q 52,32 42,40 T 46,65 Z"
+                    ]}}
+                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                  />
+                  {/* Skeletal Dots */}
+                  {[
+                    { cx: 50, cy: 90 }, { cx: 56, cy: 60 }, { cx: 62, cy: 35 }, 
+                    { cx: 42, cy: 40 }, { cx: 46, cy: 65 }
+                  ].map((dot, i) => (
+                    <motion.circle 
+                      key={i} 
+                      cx={dot.cx} 
+                      cy={dot.cy} 
+                      r="3" 
+                      fill="var(--color-primary)" 
+                      className="shadow-glow"
+                      animate={{ 
+                        scale: [1, 1.3, 1],
+                        opacity: [0.7, 1, 0.7]
+                      }}
+                      transition={{ repeat: Infinity, duration: 2, delay: i * 0.3 }}
+                    />
+                  ))}
+                </svg>
+              </div>
             </div>
 
-            {/* Edge Privacy */}
-            <div className="feature-card relative overflow-hidden p-8 rounded-[2rem] bg-primary text-on-primary-fixed group hover:scale-[1.02] transition-all duration-500 shadow-[0_30px_60px_rgba(184,200,223,0.1)] text-left">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none" />
-              <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center mb-8 border border-white/30 relative z-10">
-                <span className="material-symbols-outlined text-on-primary-fixed text-3xl">security</span>
+            {/* Bento Cell 2: Edge Security & Privacy (Col-span-1) */}
+            <div 
+              onMouseMove={handleMouseMove}
+              className="feature-card spotlight-card bg-primary text-on-primary-fixed p-8 rounded-[2rem] flex flex-col justify-between group hover:scale-[1.01] transition-all duration-500 shadow-[0_30px_60px_rgba(184,200,223,0.08)]"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+              <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center border border-white/30 relative z-10">
+                <span className="material-symbols-outlined text-on-primary-fixed text-2xl">security</span>
               </div>
-              <h3 className="font-syne font-bold text-lg mb-3 relative z-10">Edge Privacy</h3>
-              <p className="text-xs opacity-90 leading-relaxed font-medium relative z-10">All neural processing happens on your local machine. No video stream ever leaves your browser.</p>
+              <div className="space-y-3 mt-10 relative z-10">
+                <h3 className="font-syne font-bold text-xl">100% Edge Privacy</h3>
+                <p className="text-xs opacity-90 leading-relaxed font-medium">
+                  Zero cloud uploads. Video feeds are processed entirely inside your local browser memory and immediately discarded. Safe, secure, and fully offline-compliant.
+                </p>
+              </div>
             </div>
 
-            {/* Natural Syntax */}
-            <div className="feature-card apple-glass-dark p-8 rounded-[2rem] group hover:scale-[1.02] transition-all duration-500 text-left">
-              <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all">
-                <span className="material-symbols-outlined text-primary text-3xl">text_fields</span>
+            {/* Bento Cell 3: Bilingual Urdu/English Speech (Col-span-1) */}
+            <div 
+              onMouseMove={handleMouseMove}
+              className="feature-card spotlight-card glass-card-dark p-8 rounded-[2rem] flex flex-col justify-between group hover:scale-[1.01] transition-all duration-500"
+            >
+              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all">
+                <span className="material-symbols-outlined text-primary text-2xl">keyboard_voice</span>
               </div>
-              <h3 className="font-syne font-bold text-lg text-on-surface mb-3">Natural Syntax</h3>
-              <p className="text-xs text-on-surface-variant opacity-70 leading-relaxed">Converts ASL/BSL syntax structures into grammatically perfect spoken sentences.</p>
+              <div className="space-y-4 mt-8">
+                <h3 className="font-syne font-bold text-xl text-on-surface">Urdu & English TTS</h3>
+                <p className="text-xs text-on-surface-variant opacity-75 leading-relaxed">
+                  Dual-voice speech generation featuring local synthesis for Urdu (Asma/Salman Neural) and English (Jenny/Guy) voice profiles.
+                </p>
+                {/* Audio wave animation playing on hover */}
+                <div className="flex items-end gap-1 h-8 pt-2">
+                  <div className="w-1 h-6 bg-primary rounded-full equalizer-bar equalizer-bar-1" />
+                  <div className="w-1 h-8 bg-primary rounded-full equalizer-bar equalizer-bar-2" />
+                  <div className="w-1 h-4 bg-primary rounded-full equalizer-bar equalizer-bar-3" />
+                  <div className="w-1 h-7 bg-primary rounded-full equalizer-bar equalizer-bar-4" />
+                </div>
+              </div>
+            </div>
+
+            {/* Bento Cell 4: Natural Translation Engine (Col-span-2) */}
+            <div 
+              onMouseMove={handleMouseMove}
+              className="feature-card spotlight-card glass-card-dark p-8 rounded-[2rem] lg:col-span-2 flex flex-col md:flex-row justify-between items-stretch gap-8 group hover:scale-[1.01] transition-all duration-500"
+            >
+              <div className="max-w-md space-y-4 flex flex-col justify-center">
+                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all">
+                  <span className="material-symbols-outlined text-primary text-2xl">text_fields</span>
+                </div>
+                <h3 className="font-syne font-bold text-xl text-on-surface">Bilingual Syntax Compiler</h3>
+                <p className="text-xs text-on-surface-variant opacity-75 leading-relaxed">
+                  Compiles discrete predicted sign gestures (e.g. <i>"home" + "work" + "sorry"</i>) into natural, grammatically correct sentences in Urdu script and English.
+                </p>
+              </div>
+
+              {/* Terminal Logs Simulation */}
+              <div className="w-full md:w-60 bg-black/40 border border-white/5 rounded-2xl p-4 font-mono text-[10px] space-y-2.5 text-left text-on-surface-variant flex flex-col justify-center">
+                <div className="flex items-center justify-between border-b border-white/5 pb-1.5 mb-1 text-[9px] opacity-60">
+                  <span>TELEMETRY PIPELINE</span>
+                  <span>11ms</span>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-green-400">&gt; Gestures: [HELLO, FRIEND]</p>
+                  <p className="text-primary">&gt; Llama3 compile...</p>
+                  <p className="text-white font-medium">&gt; EN: "Hello, my friend."</p>
+                  <p className="text-tertiary font-medium">&gt; UR: "ہیلو، میرے دوست۔"</p>
+                </div>
+              </div>
             </div>
 
           </div>
         </section>
-
+        
         {/* Real-World Impact Statistics Section */}
         <section className="stats-trigger px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto mb-20 relative z-10 border-t border-white/5 pt-20">
           <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-12 text-center md:text-left mx-auto md:mx-0">
@@ -400,7 +514,7 @@ export default function Landing() {
                 color: 'text-purple-400'
               }
             ].map((item, idx) => (
-              <div key={idx} className={`stat-card apple-glass p-8 rounded-[2rem] border flex flex-col justify-between group transition-all duration-300 ${item.glow}`}>
+              <div key={idx} onMouseMove={handleMouseMove} className={`stat-card spotlight-card glass-card-dark p-8 rounded-[2rem] border flex flex-col justify-between group transition-all duration-300 ${item.glow}`}>
                 <div className={`font-syne text-5xl font-extrabold mb-6 group-hover:scale-105 transition-transform duration-300 ${item.color}`}>
                   <span className="stat-counter" data-target={item.stat.replace("%", "")} data-suffix={item.stat.includes("%") ? "%" : ""}>{item.stat}</span>
                 </div>

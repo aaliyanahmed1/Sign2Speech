@@ -239,12 +239,76 @@ body {
 }
 
 .glass-card-dark {
-  background: rgba(15, 23, 42, 0.65) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
+  background: rgba(8, 8, 10, 0.72) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.45) !important;
 }
+
+/* Mouse cursor spotlight glow effect for glass cards */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    280px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(255, 255, 255, 0.16),
+    transparent 80%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.45s ease;
+  opacity: 0;
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.spotlight-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    200px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(184, 200, 223, 0.04),
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.45s ease;
+  opacity: 0;
+}
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+/* Bounce animation for visual equalizers */
+@keyframes voice-bounce {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+.equalizer-bar {
+  transform-origin: bottom;
+  animation: voice-bounce 1s ease-in-out infinite;
+}
+.equalizer-bar-1 { animation-delay: 0.1s; }
+.equalizer-bar-2 { animation-delay: 0.3s; }
+.equalizer-bar-3 { animation-delay: 0.2s; }
+.equalizer-bar-4 { animation-delay: 0.4s; }
 
 .glass-header {
   background: rgba(255, 255, 255, 0.75) !important;
