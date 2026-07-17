@@ -156,7 +156,7 @@ export default function SignSpeakHistory() {
   };
 
   return (
-    <div className="flex-grow flex flex-col px-margin-mobile py-6 overflow-y-auto history-list select-none">
+    <div className="flex-grow flex flex-col px-margin-mobile py-6 history-list select-none">
       {/* Search Section */}
       <section className="mb-8 shrink-0">
         <div className="relative w-full">

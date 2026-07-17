@@ -64,7 +64,7 @@ export default function SignSpeakSettings() {
   };
 
   return (
-    <div className="flex-grow flex flex-col px-6 pt-4 safe-pb select-none overflow-y-auto font-sans bg-background text-on-background max-w-7xl mx-auto w-full">
+    <div className="flex-grow flex flex-col px-6 pt-4 safe-pb select-none font-sans bg-background text-on-background max-w-7xl mx-auto w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         {/* Left Column */}
         <div className="space-y-12">

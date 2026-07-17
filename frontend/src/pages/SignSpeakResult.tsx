@@ -126,7 +126,7 @@ export default function SignSpeakResult() {
   const isPinned = pinnedIds.has(currentResult.id);
 
   return (
-    <div className="flex-grow flex flex-col p-margin-mobile gap-6 overflow-y-auto bg-background text-on-background max-w-2xl mx-auto w-full">
+    <div className="flex-grow flex flex-col p-margin-mobile gap-6 bg-background text-on-background max-w-2xl mx-auto w-full">
       {/* Viewfinder Context Card using Local Verified Asset */}
       <div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-white/5 bg-surface shadow-md shrink-0">
         <div 

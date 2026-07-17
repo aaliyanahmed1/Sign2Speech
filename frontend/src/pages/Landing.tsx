@@ -146,10 +146,10 @@ export default function Landing() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="font-display-lg text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-xl mx-auto lg:mx-0 text-on-surface tracking-tight font-extrabold leading-tight font-syne"
+                className="font-display-lg text-3xl sm:text-4xl md:text-5xl lg:text-6.5xl max-w-xl mx-auto lg:mx-0 text-on-surface tracking-tighter font-bold leading-[1.05] font-syne"
               >
                 Bridging the Silence.<br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">Helping Pakistan's Deaf Communicate.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-primary/95">Helping Pakistan's Deaf Communicate.</span>
               </motion.h1>
 
               {/* Subheadline */}
@@ -157,7 +157,7 @@ export default function Landing() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="font-body-lg text-on-surface-variant max-w-xl mx-auto lg:mx-0 opacity-80 leading-relaxed text-xs md:text-sm"
+                className="font-body-lg text-on-surface-variant max-w-xl mx-auto lg:mx-0 opacity-80 leading-relaxed text-xs md:text-sm mt-4 md:mt-6"
               >
                 A free accessibility tool translating Pakistan Sign Language (PSL) to spoken Urdu and English, 100% locally and privately.
               </motion.p>
@@ -167,7 +167,7 @@ export default function Landing() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 }}
-                className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 border border-white/5 py-4 px-4 bg-black/45 rounded-2xl backdrop-blur-sm shadow-inner max-w-xl mx-auto lg:mx-0"
+                className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 border border-white/5 py-4 px-4 bg-black/45 rounded-2xl backdrop-blur-sm shadow-inner max-w-xl mx-auto lg:mx-0 mt-6 md:mt-8"
               >
                 {[
                   { value: '23+', label: 'Active PSL Signs', desc: 'Real-time vocab classes supported' },
@@ -188,7 +188,7 @@ export default function Landing() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.28 }}
-                className="flex flex-wrap items-center justify-center lg:justify-start gap-2 max-w-xl mx-auto lg:mx-0"
+                className="flex flex-wrap items-center justify-center lg:justify-start gap-2 max-w-xl mx-auto lg:mx-0 mt-5 md:mt-6"
               >
                 {[
                   { label: 'Latency', val: '< 18ms', icon: 'speed', color: 'text-emerald-400' },
@@ -209,7 +209,7 @@ export default function Landing() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
-                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 shadow-sm mx-auto lg:mx-0"
+                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-emerald-500/5 border border-emerald-500/10 shadow-sm mx-auto lg:mx-0 mt-5 md:mt-6"
               >
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -223,7 +223,7 @@ export default function Landing() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.32 }}
-                className="pt-2 space-y-4 mx-auto lg:mx-0"
+                className="pt-2 space-y-4 mx-auto lg:mx-0 mt-6 md:mt-8"
               >
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <Link
