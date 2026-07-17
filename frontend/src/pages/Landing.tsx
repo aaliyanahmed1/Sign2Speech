@@ -36,6 +36,14 @@ export default function Landing() {
     return () => clearInterval(interval);
   }, []);
 
+  // Force ScrollTrigger to refresh after components mount and layout heights settle
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   // GSAP Kinetic scrolling, Parallax zooming, and Staggered reveals
   useGSAP(() => {
     // 1. Background image parallax scale zoom
@@ -50,31 +58,31 @@ export default function Landing() {
       }
     });
 
-    // 2. Features Card Stagger Slide-up
+    // 2. Features Card Stagger Slide-up (Triggers earlier and stays visible)
     gsap.from(".feature-card", {
-      y: 50,
+      y: 45,
       opacity: 0,
       duration: 0.8,
-      stagger: 0.15,
+      stagger: 0.12,
       ease: "power2.out",
       scrollTrigger: {
         trigger: ".features-trigger",
-        start: "top 80%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       }
     });
 
-    // 3. Statistics Stagger slide-up
+    // 3. Statistics Stagger slide-up (Triggers earlier and stays visible)
     gsap.from(".stat-card", {
-      y: 40,
+      y: 35,
       opacity: 0,
       duration: 0.8,
-      stagger: 0.15,
+      stagger: 0.12,
       ease: "power2.out",
       scrollTrigger: {
         trigger: ".stats-trigger",
-        start: "top 85%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       }
     });
 
@@ -98,17 +106,17 @@ export default function Landing() {
       });
     });
 
-    // 4. Vocabulary grid categories staggered pop-in
+    // 4. Vocabulary grid categories staggered pop-in (Triggers earlier and stays visible)
     gsap.from(".vocab-category-card", {
       scale: 0.9,
       opacity: 0,
       duration: 0.7,
-      stagger: 0.2,
+      stagger: 0.15,
       ease: "back.out(1.2)",
       scrollTrigger: {
         trigger: ".vocab-trigger",
-        start: "top 80%",
-        toggleActions: "play none none reverse",
+        start: "top 95%",
+        toggleActions: "play none none none",
       }
     });
   }, { scope: containerRef });
