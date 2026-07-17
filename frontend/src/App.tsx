@@ -228,18 +228,96 @@ function SignSpeakBottomNav() {
   );
 }
 
+function SignSpeakSidebar() {
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const prefix = currentPath.startsWith('/live') ? '/live' : '/signspeak';
+  const isTranslateActive = currentPath === prefix || currentPath === `${prefix}/result`;
+  const isHistoryActive = currentPath === `${prefix}/history`;
+  const isSettingsActive = currentPath === `${prefix}/settings`;
+  const { user, logoutUser } = useAppStore();
+  const { addToast } = useToast();
+
+  const handleLogout = () => {
+    logoutUser();
+    addToast('Logged out successfully', 'info');
+  };
+
+  const navItems = [
+    { to: prefix, label: 'Live Interpreter', icon: 'translate', active: isTranslateActive },
+    { to: `${prefix}/history`, label: 'Translation History', icon: 'history', active: isHistoryActive },
+    { to: `${prefix}/settings`, label: 'Engine Settings', icon: 'settings', active: isSettingsActive },
+  ];
+
+  return (
+    <aside className="hidden md:flex flex-col w-68 h-screen fixed left-0 top-0 bg-[#08080a]/80 backdrop-blur-2xl border-r border-white/5 z-45 p-6 justify-between select-none">
+      <div className="space-y-8">
+        {/* Brand Logo */}
+        <Link to="/" className="flex items-center gap-3 text-primary font-bold text-lg tracking-wider uppercase font-syne no-underline pl-2 mt-2">
+          <img src="/logo.jpg" alt="Sign2Speech Logo" className="w-8 h-8 rounded-lg object-cover border border-white/10" />
+          <span>Sign2Speech</span>
+        </Link>
+
+        {/* Links */}
+        <nav className="space-y-2.5 pt-4">
+          {navItems.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className={`flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 no-underline ${
+                item.active 
+                  ? 'bg-white text-black font-semibold shadow-lg shadow-white/5' 
+                  : 'text-on-surface/65 hover:text-on-surface hover:bg-white/5'
+              }`}
+            >
+              <span className="material-symbols-outlined" style={{ fontVariationSettings: item.active ? "'FILL' 1" : "'FILL' 0" }}>{item.icon}</span>
+              <span className="text-sm font-medium">{item.label}</span>
+            </Link>
+          ))}
+        </nav>
+      </div>
+
+      {/* User profile & Log out block */}
+      <div className="space-y-4 border-t border-white/5 pt-6 mb-2">
+        <div className="flex items-center gap-3 px-2">
+          <div className="w-9 h-9 rounded-full overflow-hidden border border-white/10">
+            <img alt="Profile" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/a/default-user=s120-c"/>
+          </div>
+          <div className="flex flex-col text-left min-w-0">
+            <span className="text-xs text-on-surface font-semibold truncate">{user?.name || 'Demo User'}</span>
+            <span className="text-[10px] text-on-surface-variant font-mono opacity-65">FYP Practitioner</span>
+          </div>
+        </div>
+        
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center gap-4 px-4 py-3.5 rounded-2xl text-red-400 hover:text-red-300 hover:bg-red-500/5 transition-all duration-200 border-0 bg-transparent cursor-pointer text-left"
+        >
+          <span className="material-symbols-outlined">logout</span>
+          <span className="text-sm font-medium">Log Out Portal</span>
+        </button>
+      </div>
+    </aside>
+  );
+}
+
 function SignSpeakLayout() {
   return (
-    <div className="min-h-screen w-full bg-[#050505] text-on-background relative overflow-hidden flex flex-col font-sans select-none pb-28">
+    <div className="min-h-screen w-full bg-[#050505] text-on-background relative overflow-hidden flex flex-col md:flex-row font-sans select-none pb-28 md:pb-0">
       {/* Ambient background glows */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[140px] pointer-events-none" />
       
-      {/* Top Header */}
-      <SignSpeakHeader />
-      
-      {/* Page Content */}
-      <div className="flex-grow pt-24 px-margin-mobile">
+      {/* Left Sidebar (Desktop only) */}
+      <SignSpeakSidebar />
+
+      {/* Mobile Top Header (Mobile only) */}
+      <div className="md:hidden w-full">
+        <SignSpeakHeader />
+      </div>
+
+      {/* Page Content Container */}
+      <div className="flex-grow pt-24 md:pt-8 md:pl-72 px-margin-mobile w-full overflow-x-hidden">
           <Routes>
             <Route index element={<SignSpeakTranslate />} />
             <Route path="result" element={<SignSpeakResult />} />
@@ -248,8 +326,10 @@ function SignSpeakLayout() {
           </Routes>
       </div>
 
-      {/* Floating Bottom Nav */}
-      <SignSpeakBottomNav />
+      {/* Mobile Floating Bottom Nav (Mobile only) */}
+      <div className="md:hidden">
+        <SignSpeakBottomNav />
+      </div>
     </div>
   );
 }
